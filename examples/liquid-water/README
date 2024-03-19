@@ -1,0 +1,3 @@
+If everything is set up, you can run do.sh to run trainings using different training set sizes.
+Using the trained APTNNs on a unique test set, the data in learning-last.dat.ref (column 4, corresponding to the normalized RMSE of the validation set) and rmses.dat.ref (corresponding to the test set RMSE) should be reproduced; 
+note that due to the random initialization of the neural network, the results might vay slightly, though.
