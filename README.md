@@ -11,7 +11,11 @@ Tested with
 - e3nn 0.5.0
 - torch 1.12.1+cu116
 
-# Related Publication
+# Finite Electric Field Simulations
+All Data and Code necessary to run finite E-Field simulations can be found here: 
+https://github.com/kjaj98/cp2k-apt-pnnp-paper
+
+# Related Publications
 
 ```
 @Article{APTNN,
@@ -23,5 +27,18 @@ Tested with
   pages     = {705--712},
   volume    = {19}, 
   doi       = {10.1021/acs.jctc.2c00788},
-} 
+}
+
+@Article{APTNN-EField,
+  author  = {Joll, K. and Schienbein, P. and Rosso, K. M. and Blumberger, J.}, 
+  journal = {Nat. Commun.}, 
+  title   = {Molecular dynamics simulation with finite electric fields using Perturbed Neural Network Potentials}, 
+  year    = {2024}, 
+  pages   = {8192}, 
+  volume  = {15}, 
+  doi     = {10.1038/s41467-024-52491-3}, 
+}
+
 ```
+
+
