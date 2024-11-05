@@ -288,10 +288,6 @@ class APTNN:
         symbols = []
         for atom in frame.atoms:
             symbols.append(atom.symbol)
-        print(f'frame symbols: {symbols}')
-        print(f'prev symbols: {self.unnorm_prev_symbols}')
-        print(f'norm_mean: {self.norm_mean}')
-        print(f'norm_std: {self.norm_std}')
         
         # Update of the tensors needed?
         if self.unnorm_prev_symbols != symbols:
