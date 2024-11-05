@@ -1,0 +1,514 @@
+
+ GENERATE|  Preliminary Number of Bonds generated:                             0
+ GENERATE|  Achieved consistency in connectivity generation.
+ @ i-PI SERVER BEING STARTED
+ @ HOSTNAME: /tmp/ipi_cp2k
+ @ PORT:         8421
+ @ UNIX SOCKET:  T
+  @ i–PI Server: recieved NEEDINIT
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+  @ i–PI Server: recieved READY
+  @ i–PI Server: recieved HAVEDATA
+  @ i–PI Server: recieved FORCEREADY
+
+ ENERGY| Total FORCE_EVAL ( IPI ) energy [a.u.]:               0.000000000000000
+ @ i–PI: Shutting down server.

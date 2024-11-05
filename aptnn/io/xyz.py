@@ -104,9 +104,6 @@ class Trajectory:
                         meta[key] = meta[key].replace('"', '')
                         meta[key] = meta[key].replace('\'', '')
 
-#                print(meta)
-#                exit()
-
                 # check if important keys are present
                 bFmtSet = ('fmt' in meta)
                 if bFmtSet:
@@ -140,8 +137,9 @@ class Trajectory:
                 p = None
                 v = None
                 a = None
-                var = None
                 stddev = None
+                apt_total_std_norm = None
+                apt_total_std_unnorm = None
                 idx = 1
                 try:
                     for c in fmt:
@@ -165,6 +163,14 @@ class Trajectory:
                                                [float(aLine[idx+6]), float(aLine[idx+7]), float(aLine[idx+8])]])
                             idx += 9
 
+                        elif c == 'n':
+                            apt_total_std_norm = float(aLine[idx])
+                            idx += 1
+                        
+                        elif c == 'u':
+                            apt_total_std_unnorm = float(aLine[idx])
+                            idx += 1
+
                         elif c == 't':
                             # try to read APT
                             # only difference to 'a' is that it is accepted if APT is missing, this is only relevant for training data
@@ -187,7 +193,7 @@ class Trajectory:
                     print('    in', self.filename, file=sys.stderr)
                     exit(1)
 
-                self.atoms.append(Atom(symbol=elem, position=p, velocity=v, apt=a, apt_var=var, apt_std=stddev))
+                self.atoms.append(Atom(symbol=elem, position=p, velocity=v, apt=a, apt_std=stddev, apt_total_std_norm=apt_total_std_norm, apt_total_std_unnorm=apt_total_std_unnorm))
 
 
             if lineno == natoms + 1:
@@ -213,101 +219,110 @@ class Trajectory:
 
 
 # simplistic xyz writer
-def write_conf(fout, atoms, fmt='', meta = dict()):
+def write_conf(fout, atoms, fmt='', meta=dict()):
     data = ""
-    Naptvars = 0
-    Napts = 0
-    Nv = 0
+    float_fmt = "%26.10f"  # Fixed-point format for all floats
+
+    # if no explicit output format given, use the default behavior, i.e. printing positions, velocities, and APTs
     if fmt == '':
+        Napts = 0
+        Nv = 0
         for atom in atoms:
-            data += '%s %e %e %e '%(atom.symbol, atom.position[0], atom.position[1], atom.position[2])
+            data += f'{atom.symbol} {float_fmt % atom.position[0]} {float_fmt % atom.position[1]} {float_fmt % atom.position[2]} '
             if atom.velocity is not None:
                 Nv += 1
                 for elem in atom.velocity:
-                    data += '%e '%elem
+                    data += f'{float_fmt % elem} '
 
             if atom.apt is not None:
                 Napts += 1
                 for elem in atom.apt.flatten():
-                    data += '%e '%elem
-
-            if atom.apt_var is not None:
-                Naptvars += 1
-                data += '%e '%atom.apt_var
+                    data += f'{float_fmt % elem} '
 
             data += '\n'
+
+        attributes = ['p']
+        if Nv == len(atoms):
+            attributes.append('v')
+        if Napts == len(atoms):
+            attributes.append('a')
+        elif Napts > 0:
+            attributes.append('t')
+        meta['fmt'] = ':'.join(attributes)
+
     else:
-        for atom in atoms: 
-            data += '%s %e %e %e '%(atom.symbol, atom.position[0], atom.position[1], atom.position[2])
+        if fmt.find(':') >= 0:
+            fmt = fmt.split(':')
+        else:
+            fmt = [*fmt]
+
+        for atom in atoms:
+            data += f'{atom.symbol} {float_fmt % atom.position[0]} {float_fmt % atom.position[1]} {float_fmt % atom.position[2]} '
             for c in fmt:
                 if c == 'v':
                     if atom.velocity is not None:
-                        Nv += 1
                         for elem in atom.velocity:
-                            data += '%e '%elem
+                            data += f'{float_fmt % elem} '
                     else:
                         print('WARNING: Explicitly requested writing velocities, but not present', file=sys.stderr)
 
                 if c == 'a':
                     if atom.apt is not None:
-                        Napts += 1
                         for elem in atom.apt.flatten():
-                            data += '%e '%elem
+                            data += f'{float_fmt % elem} '
                     else:
                         print('WARNING: Explicitly requested writing APTs, but not present', file=sys.stderr)
 
                 if c == 't':
                     if atom.apt is not None:
-                        Napts += 1
                         for elem in atom.apt.flatten():
-                            data += '%e '%elem
+                            data += f'{float_fmt % elem} '
 
                 if c == 's':
                     if atom.apt_std is not None:
-                        Naptvars += 1
                         for elem in atom.apt_std.flatten():
-                            data += '%e '%elem
+                            data += f'{float_fmt % elem} '
                     else:
                         print('WARNING: Explicitly requested writing APT standard deviations, but not present', file=sys.stderr)
-                    
+
+                if c == 'u':
+                    if atom.apt_total_std_unnorm is not None:
+                        data += f'{float_fmt % atom.apt_total_std_unnorm} '
+                    else:
+                        print('WARNING: Explicitly requested writing total unnormalized APT standard deviation, but not present', file=sys.stderr)
+
+                if c == 'n':
+                    if atom.apt_total_std_norm is not None:
+                        data += f'{float_fmt % atom.apt_total_std_norm} '
+                    else:
+                        print('WARNING: Explicitly requested writing total normalized APT standard deviation, but not present', file=sys.stderr)
+                
+                if c == 'f':
+                    frc_float_fmt = '%26.10e' # scientific notation same precision
+                    if atom.frc is not None:
+                        for elem in atom.frc:
+                            data += f'{frc_float_fmt % elem} '
+
             data += '\n'
 
-    # number of atoms:
+        meta['fmt'] = ':'.join(fmt)
+
+    # Write number of atoms and metadata comment line
     print(len(atoms), file=fout)
-
-    # ==========================
-    # prepare the comment line
-    # format string:
-    attributes = ['p']
-    if Nv == len(atoms):
-        attributes.append('v')
-    if Napts == len(atoms):
-        attributes.append('a')
-    elif Napts > 0:
-        attributes.append('t')
-    if Naptvars > 0:
-        attributes.append('s')
-    meta['fmt'] = ':'.join(attributes) 
-
-    # make comment line
     comment = ', '.join([f'{key}={value}' for key, value in meta.items()])
-    comment += '\n'
-    fout.write(comment)
+    fout.write(comment + '\n')
 
-    # write the atoms
-    fout.write(data) 
-
-    pass
+    # Write the data to the file
+    fout.write(data)
 
 
 def write_frame(fout, frame, fmt=''):
     meta = frame.meta
-    if frame.box is not None: 
+    float_fmt = "%26.10f"  # Fixed-point format for box values
+
+    if frame.box is not None:
         lattice = frame.box.getLatticeVectors()
-        boxval = '%f:%f:%f:%f:%f:%f:%f:%f:%f'%(
-                lattice[0][0], lattice[0][1], lattice[0][2],
-                lattice[1][0], lattice[1][1], lattice[1][2],
-                lattice[2][0], lattice[2][1], lattice[2][2])
+        boxval = ':'.join([float_fmt % val for row in lattice for val in row])
         meta['box'] = boxval
 
     write_conf(fout, frame.atoms, meta=meta, fmt=fmt)

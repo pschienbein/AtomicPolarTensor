@@ -252,10 +252,7 @@ class CommitteeAPTNN:
         loaded_data = None
         if self.rank == 0:
             try:
-                if  torch.cuda.is_available():
-                    loaded_data = torch.load(sFn)
-                else:
-                    loaded_data=torch.load(sFn,map_location=self.device)
+                loaded_data=torch.load(sFn,map_location=self.device)
                 if len(loaded_data) != comm.Get_size():
                     print("Number of MPI Processes must match the committee size", file=sys.stderr)
                     comm.Abort(1)

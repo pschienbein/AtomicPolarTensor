@@ -11,8 +11,10 @@ class Atom:
     position: np.ndarray
     velocity: np.ndarray = field(default=None)
     apt: np.ndarray = field(default=None)
-    apt_var: float = field(default=None)
+    apt_total_std_norm: float = field(default=None)
+    apt_total_std_unnorm: float = field(default=None)
     apt_std: np.ndarray = field(default=None)
+    frc: np.ndarray = field(default=None)
 
 
 
