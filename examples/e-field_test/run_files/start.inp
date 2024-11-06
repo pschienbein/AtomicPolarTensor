@@ -1,0 +1,139 @@
+ &GLOBAL
+   PRINT_LEVEL  low
+   PROJECT_NAME apt_ipi_test
+   RUN_TYPE  MD 
+ &END GLOBAL
+ &MOTION
+
+  &DRIVER
+   HOST "/tmp/ipi_cp2k"
+   PORT 8421
+   SLEEP_TIME 0.1
+   UNIX
+  &END DRIVER
+
+   &MD 
+     ENSEMBLE  NVE
+     STEPS     100
+     TIMESTEP  1
+   &END MD
+
+   &PRINT
+     &TRAJECTORY  SILENT
+       UNIT angstrom
+       FORMAT  XMOL
+       &EACH
+         MD  1
+       &END EACH
+     &END TRAJECTORY
+     &VELOCITIES ON
+       &EACH
+	MD 1
+       &END EACH
+     &END VELOCITIES
+     &FORCES ON
+     &END FORCES
+     &RESTART_HISTORY
+       &EACH
+         MD 10000
+       &END EACH
+     &END RESTART_HISTORY
+   &END PRINT
+ &END MOTION
+
+&multiple_force_evals
+	force_eval_order 1 2 3
+	multiple_subsys
+&end multiple_force_evals
+
+&FORCE_EVAL
+	method mixed
+	&MIXED
+	ngroups 2
+	GROUP_PARTITION 16 1
+	mixing_type genmix
+	&Generic
+	mixing_function a+b
+        variables a b
+	&end generic
+	&END MIXED
+  &SUBSYS
+    &Cell
+	ABC 1.5662700000000001E+01 1.5662700000000001E+01 1.5662700000000001E+01 
+    &END CELL
+    &TOPOLOGY
+        COORD_FILE_NAME pos.xyz
+        COORD_FILE_FORMAT xyz
+    &END TOPOLOGY 
+    &VELOCITY
+      @include velocity.init
+    &END VELOCITY
+  &END SUBSYS
+&END FORCE_EVAL
+
+&FORCE_EVAL
+   METHOD  NNP
+   &NNP
+     NNP_INPUT_FILE_NAME ./nnp/nnp0/input.nn 
+     SCALE_FILE_NAME ./nnp/nnp0/scaling.data
+     &MODEL
+       WEIGHTS ./nnp/nnp0/weights 
+     &END MODEL
+     &MODEL
+       WEIGHTS ./nnp/nnp1/weights 
+     &END MODEL
+     &MODEL
+       WEIGHTS  ./nnp/nnp2/weights 
+     &END MODEL
+     &MODEL
+       WEIGHTS  ./nnp/nnp3/weights 
+     &END MODEL
+     &MODEL
+       WEIGHTS  ./nnp/nnp4/weights 
+     &END MODEL
+     &MODEL
+       WEIGHTS  ./nnp/nnp5/weights 
+     &END MODEL
+     &MODEL
+       WEIGHTS  ./nnp/nnp6/weights 
+     &END MODEL
+     &MODEL
+       WEIGHTS  ./nnp/nnp7/weights 
+     &END MODEL
+     &PRINT
+       &ENERGIES  SILENT
+         &EACH
+           MD   1
+         &END EACH
+       &END ENERGIES
+     &END PRINT
+   &END NNP
+  &SUBSYS
+    &Cell
+	ABC 1.5662700000000001E+01 1.5662700000000001E+01 1.5662700000000001E+01 
+    &END CELL
+    &TOPOLOGY
+      COORD_FILE_NAME pos.xyz
+      COORD_FILE_FORMAT xyz
+    &END TOPOLOGY 
+    &VELOCITY
+      @include velocity.init
+    &END VELOCITY
+  &END SUBSYS
+&END FORCE_EVAL
+
+&FORCE_EVAL
+  METHOD IPI
+  &SUBSYS
+    &Cell
+	ABC 1.5662700000000001E+01 1.5662700000000001E+01 1.5662700000000001E+01 
+    &END CELL
+    &TOPOLOGY
+      COORD_FILE_NAME pos.xyz
+      COORD_FILE_FORMAT xyz
+    &END TOPOLOGY 
+    &VELOCITY
+      @include velocity.init
+    &END VELOCITY
+  &END SUBSYS
+&END FORCE_EVAL

@@ -288,8 +288,7 @@ class APTNN:
         symbols = []
         for atom in frame.atoms:
             symbols.append(atom.symbol)
-
-
+        
         # Update of the tensors needed?
         if self.unnorm_prev_symbols != symbols:
             # create the tensor used for unnormalizing this frame
@@ -544,13 +543,17 @@ class APTNN:
             if 'norm_mean' in src:
                 self.norm_mean = src['norm_mean']
             else:
-                self.norm_mean = np.zeros((3,3))
+                self.norm_mean = dict()
+                for kind in self.model_parameters.atom_types:
+                    self.norm_mean[kind] = np.zeros((3,3))
                 print('# NOTE: could not find normalization mean in input file, setting to', self.norm_mean)
             
             if 'norm_std' in src:
                 self.norm_std = src['norm_std']
             else:
-                self.norm_std = np.ones((3,3))
+                self.norm_std = dict()
+                for kind in self.model_parameters.atom_types:
+                    self.norm_std[kind] = np.ones((3,3))
                 print('# NOTE: could not find normalization stddev in input file, setting to', self.norm_std)
 
     def load(self, sFn):

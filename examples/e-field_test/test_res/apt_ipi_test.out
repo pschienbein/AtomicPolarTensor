@@ -1,0 +1,2893 @@
+ DBCSR| CPU Multiplication driver                                           BLAS (U)
+ DBCSR| Multrec recursion limit                                              512 (U)
+ DBCSR| Multiplication stack size                                           1000 (D)
+ DBCSR| Maximum elements for images                                    UNLIMITED (U)
+ DBCSR| Multiplicative factor virtual images                                   1 (U)
+ DBCSR| Use multiplication densification                                       T (D)
+ DBCSR| Multiplication size stacks                                             3 (U)
+ DBCSR| Use memory pool for CPU allocation                                     F (U)
+ DBCSR| Number of 3D layers                                               SINGLE (U)
+ DBCSR| Use MPI memory allocation                                              F (U)
+ DBCSR| Use RMA algorithm                                                      F (U)
+ DBCSR| Use Communication thread                                               T (U)
+ DBCSR| Communication thread load                                             87 (D)
+ DBCSR| MPI: My process id                                                     0
+ DBCSR| MPI: Number of processes                                              17
+ DBCSR| OMP: Current number of threads                                         1
+ DBCSR| OMP: Max number of threads                                             1
+ DBCSR| Split modifier for TAS multiplication algorithm                  1.0E+00 (U)
+
+
+  **** **** ******  **  PROGRAM STARTED AT               2024-11-05 13:59:44.207
+ ***** ** ***  *** **   PROGRAM STARTED ON                 compute-gpu-0-4.local
+ **    ****   ******    PROGRAM STARTED BY                                 kjoll
+ ***** **    ** ** **   PROGRAM PROCESS ID                                 47961
+  **** **  *******  **  PROGRAM STARTED IN /share/gpu1/kjoll/testing_cp2k_2024.3
+                                           _apt_i-pi_interface
+
+ CP2K| version string:                 CP2K version 2024.3 (Development Version)
+ CP2K| source code revision number:                                  git:bbd302a
+ CP2K| cp2kflags: omp fftw3 parallel scalapack                                  
+ CP2K| is freely available from                            https://www.cp2k.org/
+ CP2K| Program compiled at                          Tue 29 Oct 16:33:53 GMT 2024
+ CP2K| Program compiled on                                   hypatia-login.local
+ CP2K| Program compiled for                                                local
+ CP2K| Data directory path                        /home/kjoll/software/cp2k/data
+ CP2K| Input file name                                                 start.inp
+
+ GLOBAL| Force Environment number                                              1
+ GLOBAL| Basis set file name                                           BASIS_SET
+ GLOBAL| Potential file name                                           POTENTIAL
+ GLOBAL| MM Potential file name                                     MM_POTENTIAL
+ GLOBAL| Coordinate file name                                            pos.xyz
+ GLOBAL| Force Environment number                                              2
+ GLOBAL| Basis set file name                                           BASIS_SET
+ GLOBAL| Potential file name                                           POTENTIAL
+ GLOBAL| MM Potential file name                                     MM_POTENTIAL
+ GLOBAL| Coordinate file name                                            pos.xyz
+ GLOBAL| Force Environment number                                              3
+ GLOBAL| Basis set file name                                           BASIS_SET
+ GLOBAL| Potential file name                                           POTENTIAL
+ GLOBAL| MM Potential file name                                     MM_POTENTIAL
+ GLOBAL| Coordinate file name                                            pos.xyz
+ GLOBAL| Method name                                                        CP2K
+ GLOBAL| Project name                                               apt_ipi_test
+ GLOBAL| Run type                                                             MD
+ GLOBAL| FFT library                                                       FFTW3
+ GLOBAL| Diagonalization library                                       ScaLAPACK
+ GLOBAL| DGEMM library                                                      BLAS
+ GLOBAL| Orthonormality check for eigenvectors                          DISABLED
+ GLOBAL| Matrix multiplication library                                 ScaLAPACK
+ GLOBAL| All-to-all communication in single precision                          F
+ GLOBAL| FFTs using library dependent lengths                                  F
+ GLOBAL| Grid backend                                                       AUTO
+ GLOBAL| Global print level                                                  LOW
+ GLOBAL| MPI I/O enabled                                                       T
+ GLOBAL| Total number of message passing processes                            17
+ GLOBAL| Number of threads for this process                                    1
+ GLOBAL| This output is from process                                           0
+ GLOBAL| Stack size for threads created by OpenMP (OMP_STACKSIZE)        default
+ GLOBAL| CPU model name               Intel(R) Xeon(R) Silver 4314 CPU @ 2.40GHz
+
+ MEMORY| system memory details [Kb]
+ MEMORY|                        rank 0           min           max       average
+ MEMORY| MemTotal            527839432     527839432     527839432     527839432
+ MEMORY| MemFree             398625676     398625676     398625676     398625676
+ MEMORY| Buffers                354676        354676        354676        354676
+ MEMORY| Cached               55707484      55707484      55707484      55707484
+ MEMORY| Slab                   932200        932200        932200        932200
+ MEMORY| SReclaimable           497476        497476        497476        497476
+ MEMORY| MemLikelyFree       455185312     455185312     455185312     455185312
+
+ MIXED_ENV| Number of created MPI groups:                                      2
+ MIXED_ENV| Task to group correspondence:
+  (   0 :    0)  (   1 :    0)  (   2 :    0)  (   3 :    0)
+  (   4 :    0)  (   5 :    0)  (   6 :    0)  (   7 :    0)
+  (   8 :    0)  (   9 :    0)  (  10 :    0)  (  11 :    0)
+  (  12 :    0)  (  13 :    0)  (  14 :    0)  (  15 :    0)
+  (  16 :    1)
+
+ GENERATE|  Preliminary Number of Bonds generated:                             0
+ GENERATE|  Achieved consistency in connectivity generation.
+
+ MD_PAR| Molecular dynamics protocol (MD input parameters)
+ MD_PAR| Ensemble type                                                       NVE
+ MD_PAR| Number of time steps                                                100
+ MD_PAR| Time step [fs]                                                 1.000000
+ MD_PAR| Temperature [K]                                              300.000000
+ MD_PAR| Temperature tolerance [K]                                      0.000000
+ MD_PAR| Print MD information every                                    1 step(s)
+ MD_PAR| File type   Print frequency [steps]                          File names
+ MD_PAR| Coordinates          1                           apt_ipi_test-pos-1.xyz
+ MD_PAR| Velocities           1                           apt_ipi_test-vel-1.xyz
+ MD_PAR| Energies             1                              apt_ipi_test-1.ener
+ MD_PAR| Dump                20                           apt_ipi_test-1.restart
+
+ ROT| Rotational analysis information
+ ROT| Principal axes and moments of inertia [a.u.]
+ ROT|                           1                   2                   3
+ ROT| Eigenvalues      3.43211078235E+10   3.59784036482E+10   4.11856192352E+10
+ ROT|      x              0.705504535882     -0.395593451711     -0.588021403363
+ ROT|      y              0.644892921513      0.702427986504      0.301177760729
+ ROT|      z              0.293898740440     -0.591693117028      0.750681547415
+ ROT| Number of rotovibrational vectors                                        6
+
+ DOF| Calculation of degrees of freedom
+ DOF| Number of atoms                                                        384
+ DOF| Number of intramolecular constraints                                     0
+ DOF| Number of intermolecular constraints                                     0
+ DOF| Invariants (translations + rotations)                                    3
+ DOF| Degrees of freedom                                                    1149
+
+ DOF| Restraints information
+ DOF| Number of intramolecular restraints                                      0
+ DOF| Number of intermolecular restraints                                      0
+
+ MD_VEL| Velocities initialization
+ MD_VEL| Initial temperature [K]                                      285.524750
+ MD_VEL| COM velocity             0.0000000000     0.0000000000    -0.0000000000
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.627708006430112
+
+ MD_INI| MD initialization
+ MD_INI| Potential energy [hartree]                          -0.221062770801E+04
+ MD_INI| Kinetic energy [hartree]                             0.519465289848E+00
+ MD_INI| Temperature [K]                                              285.524750
+ MD_INI| Cell volume [bohr^3]                                 2.592964050796E+04
+ MD_INI| Cell volume [ang^3]                                  3.842376246864E+03
+ MD_INI| Cell lengths [bohr]      2.95982135E+01  2.95982135E+01  2.95982135E+01
+ MD_INI| Cell lengths [ang]       1.56627000E+01  1.56627000E+01  1.56627000E+01
+ MD_INI| Cell angles [deg]        9.00000000E+01  9.00000000E+01  9.00000000E+01
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.616348122839554
+
+ MD| ***************************************************************************
+ MD| Step number                                                               1
+ MD| Time [fs]                                                          1.000000
+ MD| Conserved quantity [hartree]                            -0.221010826472E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                     20.291576            20.291576
+ MD| Energy drift per atom [K]          -0.180955785254E-01   0.000000000000E+00
+ MD| Potential energy [hartree]         -0.221061634812E+04  -0.221061634812E+04
+ MD| Kinetic energy [hartree]            0.508083401001E+00   0.508083401001E+00
+ MD| Temperature [K]                             279.268681           279.268681
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.603570366538861
+
+ MD| ***************************************************************************
+ MD| Step number                                                               2
+ MD| Time [fs]                                                          2.000000
+ MD| Conserved quantity [hartree]                            -0.221010624482E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      1.423774            10.857675
+ MD| Energy drift per atom [K]           0.164292583499E+01   0.821462917493E+00
+ MD| Potential energy [hartree]         -0.221060357037E+04  -0.221060995924E+04
+ MD| Kinetic energy [hartree]            0.497325541570E+00   0.502704471286E+00
+ MD| Temperature [K]                             273.355610           276.312145
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.616696287021114
+
+ MD| ***************************************************************************
+ MD| Step number                                                               3
+ MD| Time [fs]                                                          3.000000
+ MD| Conserved quantity [hartree]                            -0.221010801203E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.156904             7.290751
+ MD| Energy drift per atom [K]           0.189697849998E+00   0.610874561661E+00
+ MD| Potential energy [hartree]         -0.221061669629E+04  -0.221061220493E+04
+ MD| Kinetic energy [hartree]            0.508684253855E+00   0.504697732142E+00
+ MD| Temperature [K]                             279.598940           277.407744
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.634859894257715
+
+ MD| ***************************************************************************
+ MD| Step number                                                               4
+ MD| Time [fs]                                                          4.000000
+ MD| Conserved quantity [hartree]                            -0.221011017795E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.579003             5.612814
+ MD| Energy drift per atom [K]          -0.159140094060E+01   0.603056860954E-01
+ MD| Potential energy [hartree]         -0.221063485989E+04  -0.221061786867E+04
+ MD| Kinetic energy [hartree]            0.524681943276E+00   0.509693784926E+00
+ MD| Temperature [K]                             288.392090           280.153830
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.629350975878879
+
+ MD| ***************************************************************************
+ MD| Step number                                                               5
+ MD| Time [fs]                                                          5.000000
+ MD| Conserved quantity [hartree]                            -0.221010869088E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.163946             4.523040
+ MD| Energy drift per atom [K]          -0.368540552319E+00  -0.254635615874E-01
+ MD| Potential energy [hartree]         -0.221062935098E+04  -0.221062016513E+04
+ MD| Kinetic energy [hartree]            0.520660092945E+00   0.511887046529E+00
+ MD| Temperature [K]                             286.181475           281.359359
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.618279779330805
+
+ MD| ***************************************************************************
+ MD| Step number                                                               6
+ MD| Time [fs]                                                          6.000000
+ MD| Conserved quantity [hartree]                            -0.221010756147E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.159041             3.795707
+ MD| Energy drift per atom [K]           0.560212442679E+00   0.721491057903E-01
+ MD| Potential energy [hartree]         -0.221061827978E+04  -0.221061985090E+04
+ MD| Kinetic energy [hartree]            0.510718313063E+00   0.511692257618E+00
+ MD| Temperature [K]                             280.716963           281.252293
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.619066940471384
+
+ MD| ***************************************************************************
+ MD| Step number                                                               7
+ MD| Time [fs]                                                          7.000000
+ MD| Conserved quantity [hartree]                            -0.221010813279E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.159071             3.276188
+ MD| Energy drift per atom [K]           0.903938704058E-01   0.747555007353E-01
+ MD| Potential energy [hartree]         -0.221061906694E+04  -0.221061973891E+04
+ MD| Kinetic energy [hartree]            0.510934147997E+00   0.511583956244E+00
+ MD| Temperature [K]                             280.835597           281.192765
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.625424934142757
+
+ MD| ***************************************************************************
+ MD| Step number                                                               8
+ MD| Time [fs]                                                          8.000000
+ MD| Conserved quantity [hartree]                            -0.221010896673E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.156410             2.886215
+ MD| Energy drift per atom [K]          -0.595375907374E+00  -0.901092527833E-02
+ MD| Potential energy [hartree]         -0.221062542493E+04  -0.221062044966E+04
+ MD| Kinetic energy [hartree]            0.516458206466E+00   0.512193237521E+00
+ MD| Temperature [K]                             283.871903           281.527658
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.626411332830230
+
+ MD| ***************************************************************************
+ MD| Step number                                                               9
+ MD| Time [fs]                                                          9.000000
+ MD| Conserved quantity [hartree]                            -0.221010918893E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.157091             2.582979
+ MD| Energy drift per atom [K]          -0.778099304213E+00  -0.944651896045E-01
+ MD| Potential energy [hartree]         -0.221062641133E+04  -0.221062111207E+04
+ MD| Kinetic energy [hartree]            0.517222403071E+00   0.512752033694E+00
+ MD| Temperature [K]                             284.291945           281.834801
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.620488492696495
+
+ MD| ***************************************************************************
+ MD| Step number                                                              10
+ MD| Time [fs]                                                         10.000000
+ MD| Conserved quantity [hartree]                            -0.221010885083E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.157149             2.340396
+ MD| Energy drift per atom [K]          -0.500068304446E+00  -0.135025501089E+00
+ MD| Potential energy [hartree]         -0.221062048849E+04  -0.221062104971E+04
+ MD| Kinetic energy [hartree]            0.511637664507E+00   0.512640596775E+00
+ MD| Temperature [K]                             281.222286           281.773549
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.616061022036320
+
+ MD| ***************************************************************************
+ MD| Step number                                                              11
+ MD| Time [fs]                                                         11.000000
+ MD| Conserved quantity [hartree]                            -0.221010826315E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.157514             2.141953
+ MD| Energy drift per atom [K]          -0.168047359339E-01  -0.124278158802E+00
+ MD| Potential energy [hartree]         -0.221061606102E+04  -0.221062059620E+04
+ MD| Kinetic energy [hartree]            0.507797869936E+00   0.512200348881E+00
+ MD| Temperature [K]                             279.111738           281.531566
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.621932993401970
+
+ MD| ***************************************************************************
+ MD| Step number                                                              12
+ MD| Time [fs]                                                         12.000000
+ MD| Conserved quantity [hartree]                            -0.221010892533E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.157755             1.976603
+ MD| Energy drift per atom [K]          -0.561331881240E+00  -0.160699302338E+00
+ MD| Potential energy [hartree]         -0.221062193299E+04  -0.221062070760E+04
+ MD| Kinetic energy [hartree]            0.513007665205E+00   0.512267625241E+00
+ MD| Temperature [K]                             281.975309           281.568545
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.629988705093638
+
+ MD| ***************************************************************************
+ MD| Step number                                                              13
+ MD| Time [fs]                                                         13.000000
+ MD| Conserved quantity [hartree]                            -0.221010913348E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.157289             1.836656
+ MD| Energy drift per atom [K]          -0.732499679220E+00  -0.204683946714E+00
+ MD| Potential energy [hartree]         -0.221062998871E+04  -0.221062142153E+04
+ MD| Kinetic energy [hartree]            0.520855227082E+00   0.512928209998E+00
+ MD| Temperature [K]                             286.288731           281.931636
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.634357624373024
+
+ MD| ***************************************************************************
+ MD| Step number                                                              14
+ MD| Time [fs]                                                         14.000000
+ MD| Conserved quantity [hartree]                            -0.221010893998E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.155457             1.716570
+ MD| Energy drift per atom [K]          -0.573383174819E+00  -0.231019605864E+00
+ MD| Potential energy [hartree]         -0.221063435762E+04  -0.221062234553E+04
+ MD| Kinetic energy [hartree]            0.525417641115E+00   0.513820312221E+00
+ MD| Temperature [K]                             288.796468           282.421981
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.634704788863928
+
+ MD| ***************************************************************************
+ MD| Step number                                                              15
+ MD| Time [fs]                                                         15.000000
+ MD| Conserved quantity [hartree]                            -0.221010875986E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.155007             1.612466
+ MD| Energy drift per atom [K]          -0.425258741853E+00  -0.243968881597E+00
+ MD| Potential energy [hartree]         -0.221063470479E+04  -0.221062316948E+04
+ MD| Kinetic energy [hartree]            0.525944933373E+00   0.514628620297E+00
+ MD| Temperature [K]                             289.086294           282.866269
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.631778382490666
+
+ MD| ***************************************************************************
+ MD| Step number                                                              16
+ MD| Time [fs]                                                         16.000000
+ MD| Conserved quantity [hartree]                            -0.221010823683E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.155568             1.521410
+ MD| Energy drift per atom [K]           0.484097112684E-02  -0.228418265802E+00
+ MD| Potential energy [hartree]         -0.221063177838E+04  -0.221062370754E+04
+ MD| Kinetic energy [hartree]            0.523541552806E+00   0.515185678579E+00
+ MD| Temperature [K]                             287.765273           283.172456
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.629386889456782
+
+ MD| ***************************************************************************
+ MD| Step number                                                              17
+ MD| Time [fs]                                                         17.000000
+ MD| Conserved quantity [hartree]                            -0.221010846474E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.156056             1.441095
+ MD| Energy drift per atom [K]          -0.182573189174E+00  -0.225721496588E+00
+ MD| Potential energy [hartree]         -0.221062938689E+04  -0.221062404162E+04
+ MD| Kinetic energy [hartree]            0.520922153453E+00   0.515523118278E+00
+ MD| Temperature [K]                             286.325517           283.357931
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.623662718336163
+
+ MD| ***************************************************************************
+ MD| Step number                                                              18
+ MD| Time [fs]                                                         18.000000
+ MD| Conserved quantity [hartree]                            -0.221010859480E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.157454             1.369781
+ MD| Energy drift per atom [K]          -0.289526821603E+00  -0.229266236867E+00
+ MD| Potential energy [hartree]         -0.221062366272E+04  -0.221062402057E+04
+ MD| Kinetic energy [hartree]            0.515067920609E+00   0.515497829518E+00
+ MD| Temperature [K]                             283.107731           283.344031
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.613869743312534
+
+ MD| ***************************************************************************
+ MD| Step number                                                              19
+ MD| Time [fs]                                                         19.000000
+ MD| Conserved quantity [hartree]                            -0.221010783998E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.158822             1.306047
+ MD| Energy drift per atom [K]           0.331181927020E+00  -0.199768965083E+00
+ MD| Potential energy [hartree]         -0.221061386974E+04  -0.221062348632E+04
+ MD| Kinetic energy [hartree]            0.506029762861E+00   0.514999510221E+00
+ MD| Temperature [K]                             278.139896           283.070129
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.612883653648169
+
+ MD| ***************************************************************************
+ MD| Step number                                                              20
+ MD| Time [fs]                                                         20.000000
+ MD| Conserved quantity [hartree]                            -0.221010779442E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.154863             1.248488
+ MD| Energy drift per atom [K]           0.368649376926E+00  -0.171348047983E+00
+ MD| Potential energy [hartree]         -0.221061288365E+04  -0.221062295618E+04
+ MD| Kinetic energy [hartree]            0.505089235755E+00   0.514503996497E+00
+ MD| Temperature [K]                             277.622934           282.797769
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.620985770998232
+
+ MD| ***************************************************************************
+ MD| Step number                                                              21
+ MD| Time [fs]                                                         21.000000
+ MD| Conserved quantity [hartree]                            -0.221011004305E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.169058             1.197086
+ MD| Energy drift per atom [K]          -0.148047045892E+01  -0.233687210409E+00
+ MD| Potential energy [hartree]         -0.221062098577E+04  -0.221062286235E+04
+ MD| Kinetic energy [hartree]            0.510942717816E+00   0.514334411798E+00
+ MD| Temperature [K]                             280.840308           282.704557
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.613021563548045
+
+ MD| ***************************************************************************
+ MD| Step number                                                              22
+ MD| Time [fs]                                                         22.000000
+ MD| Conserved quantity [hartree]                            -0.221010922490E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.155604             1.149746
+ MD| Energy drift per atom [K]          -0.807676651821E+00  -0.259777639564E+00
+ MD| Potential energy [hartree]         -0.221061302156E+04  -0.221062241504E+04
+ MD| Kinetic energy [hartree]            0.503796666046E+00   0.513855423355E+00
+ MD| Temperature [K]                             276.912471           282.441280
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.600343969086225
+
+ MD| ***************************************************************************
+ MD| Step number                                                              23
+ MD| Time [fs]                                                         23.000000
+ MD| Conserved quantity [hartree]                            -0.221010777330E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.156278             1.106552
+ MD| Energy drift per atom [K]           0.386016372586E+00  -0.231699639035E+00
+ MD| Potential energy [hartree]         -0.221060034397E+04  -0.221062145543E+04
+ MD| Kinetic energy [hartree]            0.492570670452E+00   0.512929999316E+00
+ MD| Temperature [K]                             270.742089           281.932620
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.603954234758930
+
+ MD| ***************************************************************************
+ MD| Step number                                                              24
+ MD| Time [fs]                                                         24.000000
+ MD| Conserved quantity [hartree]                            -0.221010885312E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.157794             1.067020
+ MD| Energy drift per atom [K]          -0.501952542032E+00  -0.242960176660E+00
+ MD| Potential energy [hartree]         -0.221060395423E+04  -0.221062072622E+04
+ MD| Kinetic energy [hartree]            0.495101115228E+00   0.512187129145E+00
+ MD| Temperature [K]                             272.132951           281.524300
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.612419915761620
+
+ MD| ***************************************************************************
+ MD| Step number                                                              25
+ MD| Time [fs]                                                         25.000000
+ MD| Conserved quantity [hartree]                            -0.221010941019E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.157637             1.030645
+ MD| Energy drift per atom [K]          -0.960047642273E+00  -0.271643675285E+00
+ MD| Potential energy [hartree]         -0.221061241992E+04  -0.221062039396E+04
+ MD| Kinetic energy [hartree]            0.503009726436E+00   0.511820033037E+00
+ MD| Temperature [K]                             276.479929           281.322525
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.615645763149587
+
+ MD| ***************************************************************************
+ MD| Step number                                                              26
+ MD| Time [fs]                                                         26.000000
+ MD| Conserved quantity [hartree]                            -0.221010959490E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.162441             0.997252
+ MD| Energy drift per atom [K]          -0.111193707976E+01  -0.303962652380E+00
+ MD| Potential energy [hartree]         -0.221061564576E+04  -0.221062021134E+04
+ MD| Kinetic energy [hartree]            0.506050867596E+00   0.511598142058E+00
+ MD| Temperature [K]                             278.151496           281.200563
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.609325824767893
+
+ MD| ***************************************************************************
+ MD| Step number                                                              27
+ MD| Time [fs]                                                         27.000000
+ MD| Conserved quantity [hartree]                            -0.221010963378E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.161548             0.966300
+ MD| Energy drift per atom [K]          -0.114391425207E+01  -0.335071970887E+00
+ MD| Potential energy [hartree]         -0.221060932582E+04  -0.221061980817E+04
+ MD| Kinetic energy [hartree]            0.499692043147E+00   0.511157175432E+00
+ MD| Temperature [K]                             274.656360           280.958185
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.595573632073410
+
+ MD| ***************************************************************************
+ MD| Step number                                                              28
+ MD| Time [fs]                                                         28.000000
+ MD| Conserved quantity [hartree]                            -0.221010789687E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.158064             0.937435
+ MD| Energy drift per atom [K]           0.284400866287E+00  -0.312947940988E+00
+ MD| Potential energy [hartree]         -0.221059557363E+04  -0.221061894265E+04
+ MD| Kinetic energy [hartree]            0.487676763182E+00   0.510318589280E+00
+ MD| Temperature [K]                             268.052147           280.497255
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.597889874212342
+
+ MD| ***************************************************************************
+ MD| Step number                                                              29
+ MD| Time [fs]                                                         29.000000
+ MD| Conserved quantity [hartree]                            -0.221010777371E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.159228             0.910600
+ MD| Energy drift per atom [K]           0.385678261741E+00  -0.288857382273E+00
+ MD| Potential energy [hartree]         -0.221059788987E+04  -0.221061821670E+04
+ MD| Kinetic energy [hartree]            0.490116164416E+00   0.509621953940E+00
+ MD| Temperature [K]                             269.392966           280.114348
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.616599854246942
+
+ MD| ***************************************************************************
+ MD| Step number                                                              30
+ MD| Time [fs]                                                         30.000000
+ MD| Conserved quantity [hartree]                            -0.221011017102E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.155384             0.885426
+ MD| Energy drift per atom [K]          -0.158569924645E+01  -0.332085444412E+00
+ MD| Potential energy [hartree]         -0.221061659985E+04  -0.221061816280E+04
+ MD| Kinetic energy [hartree]            0.506428836851E+00   0.509515516704E+00
+ MD| Temperature [K]                             278.359247           280.055845
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.620583447739591
+
+ MD| ***************************************************************************
+ MD| Step number                                                              31
+ MD| Time [fs]                                                         31.000000
+ MD| Conserved quantity [hartree]                            -0.221010998167E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.153363             0.861811
+ MD| Energy drift per atom [K]          -0.142999025527E+01  -0.367501728634E+00
+ MD| Potential energy [hartree]         -0.221062058345E+04  -0.221061824089E+04
+ MD| Kinetic energy [hartree]            0.510601781366E+00   0.509550557499E+00
+ MD| Temperature [K]                             280.652912           280.075105
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.610814455656055
+
+ MD| ***************************************************************************
+ MD| Step number                                                              32
+ MD| Time [fs]                                                         32.000000
+ MD| Conserved quantity [hartree]                            -0.221010845102E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.153813             0.839686
+ MD| Energy drift per atom [K]          -0.171290299520E+00  -0.361370121474E+00
+ MD| Potential energy [hartree]         -0.221061081446E+04  -0.221061800881E+04
+ MD| Kinetic energy [hartree]            0.502363440291E+00   0.509325960087E+00
+ MD| Temperature [K]                             276.124697           279.951655
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.608840791186140
+
+ MD| ***************************************************************************
+ MD| Step number                                                              33
+ MD| Time [fs]                                                         33.000000
+ MD| Conserved quantity [hartree]                            -0.221010842189E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.158082             0.819032
+ MD| Energy drift per atom [K]          -0.147336014366E+00  -0.354884239440E+00
+ MD| Potential energy [hartree]         -0.221060884079E+04  -0.221061773099E+04
+ MD| Kinetic energy [hartree]            0.500418905599E+00   0.509056049345E+00
+ MD| Temperature [K]                             275.055881           279.803298
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.616935401492810
+
+ MD| ***************************************************************************
+ MD| Step number                                                              34
+ MD| Time [fs]                                                         34.000000
+ MD| Conserved quantity [hartree]                            -0.221010878751E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.155877             0.799527
+ MD| Energy drift per atom [K]          -0.447999688274E+00  -0.357622929112E+00
+ MD| Potential energy [hartree]         -0.221061693540E+04  -0.221061770759E+04
+ MD| Kinetic energy [hartree]            0.508147891713E+00   0.509029338826E+00
+ MD| Temperature [K]                             279.304128           279.788617
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.628508373584737
+
+ MD| ***************************************************************************
+ MD| Step number                                                              35
+ MD| Time [fs]                                                         35.000000
+ MD| Conserved quantity [hartree]                            -0.221010886788E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.151892             0.781023
+ MD| Energy drift per atom [K]          -0.514086761404E+00  -0.362093324320E+00
+ MD| Potential energy [hartree]         -0.221062850837E+04  -0.221061801619E+04
+ MD| Kinetic energy [hartree]            0.519640498151E+00   0.509332514807E+00
+ MD| Temperature [K]                             285.621054           279.955258
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.636946276411436
+
+ MD| ***************************************************************************
+ MD| Step number                                                              36
+ MD| Time [fs]                                                         36.000000
+ MD| Conserved quantity [hartree]                            -0.221010958965E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.153785             0.763600
+ MD| Energy drift per atom [K]          -0.110762571410E+01  -0.382802557369E+00
+ MD| Potential energy [hartree]         -0.221063694628E+04  -0.221061854202E+04
+ MD| Kinetic energy [hartree]            0.527356623725E+00   0.509833184499E+00
+ MD| Temperature [K]                             289.862232           280.230451
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.631313109728126
+
+ MD| ***************************************************************************
+ MD| Step number                                                              37
+ MD| Time [fs]                                                         37.000000
+ MD| Conserved quantity [hartree]                            -0.221010842198E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.151661             0.747061
+ MD| Energy drift per atom [K]          -0.147417545691E+00  -0.376440800297E+00
+ MD| Potential energy [hartree]         -0.221063131311E+04  -0.221061888719E+04
+ MD| Kinetic energy [hartree]            0.522891124994E+00   0.510186101810E+00
+ MD| Temperature [K]                             287.407765           280.424433
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.625039671193463
+
+ MD| ***************************************************************************
+ MD| Step number                                                              38
+ MD| Time [fs]                                                         38.000000
+ MD| Conserved quantity [hartree]                            -0.221010723817E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.154017             0.731455
+ MD| Energy drift per atom [K]           0.826068050177E+00  -0.344795830548E+00
+ MD| Potential energy [hartree]         -0.221062503967E+04  -0.221061904909E+04
+ MD| Kinetic energy [hartree]            0.517801500522E+00   0.510386507039E+00
+ MD| Temperature [K]                             284.610246           280.534586
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.631882634089379
+
+ MD| ***************************************************************************
+ MD| Step number                                                              39
+ MD| Time [fs]                                                         39.000000
+ MD| Conserved quantity [hartree]                            -0.221010816902E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.153350             0.716631
+ MD| Energy drift per atom [K]           0.606017963940E-01  -0.334401019600E+00
+ MD| Potential energy [hartree]         -0.221063188263E+04  -0.221061937816E+04
+ MD| Kinetic energy [hartree]            0.523713612752E+00   0.510728227698E+00
+ MD| Temperature [K]                             287.859846           280.722413
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.639838468771813
+
+ MD| ***************************************************************************
+ MD| Step number                                                              40
+ MD| Time [fs]                                                         40.000000
+ MD| Conserved quantity [hartree]                            -0.221010847531E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.152386             0.702525
+ MD| Energy drift per atom [K]          -0.191268507262E+00  -0.330822706792E+00
+ MD| Potential energy [hartree]         -0.221063983847E+04  -0.221061988967E+04
+ MD| Kinetic energy [hartree]            0.531363158765E+00   0.511244100975E+00
+ MD| Temperature [K]                             292.064429           281.005963
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.643612610098444
+
+ MD| ***************************************************************************
+ MD| Step number                                                              41
+ MD| Time [fs]                                                         41.000000
+ MD| Conserved quantity [hartree]                            -0.221010825260E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.164066             0.689392
+ MD| Energy drift per atom [K]          -0.812554266908E-02  -0.322952044252E+00
+ MD| Potential energy [hartree]         -0.221064361261E+04  -0.221062046828E+04
+ MD| Kinetic energy [hartree]            0.535360012392E+00   0.511832293936E+00
+ MD| Temperature [K]                             294.261304           281.329264
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.647244666608913
+
+ MD| ***************************************************************************
+ MD| Step number                                                              42
+ MD| Time [fs]                                                         42.000000
+ MD| Conserved quantity [hartree]                            -0.221010857264E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.153974             0.676644
+ MD| Energy drift per atom [K]          -0.271309318921E+00  -0.321722455554E+00
+ MD| Potential energy [hartree]         -0.221064724467E+04  -0.221062110581E+04
+ MD| Kinetic energy [hartree]            0.538672022406E+00   0.512471335090E+00
+ MD| Temperature [K]                             296.081755           281.680514
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.648790725334948
+
+ MD| ***************************************************************************
+ MD| Step number                                                              43
+ MD| Time [fs]                                                         43.000000
+ MD| Conserved quantity [hartree]                            -0.221010909127E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.154545             0.664502
+ MD| Energy drift per atom [K]          -0.697790605465E+00  -0.330468226482E+00
+ MD| Potential energy [hartree]         -0.221064879073E+04  -0.221062174964E+04
+ MD| Kinetic energy [hartree]            0.539699455538E+00   0.513104547194E+00
+ MD| Temperature [K]                             296.646485           282.028560
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.644584124659104
+
+ MD| ***************************************************************************
+ MD| Step number                                                              44
+ MD| Time [fs]                                                         44.000000
+ MD| Conserved quantity [hartree]                            -0.221010849134E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.153787             0.652895
+ MD| Energy drift per atom [K]          -0.204450819958E+00  -0.327604194516E+00
+ MD| Potential energy [hartree]         -0.221064458412E+04  -0.221062226861E+04
+ MD| Kinetic energy [hartree]            0.536092784208E+00   0.513627007126E+00
+ MD| Temperature [K]                             294.664073           282.315731
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.642530672888824
+
+ MD| ***************************************************************************
+ MD| Step number                                                              45
+ MD| Time [fs]                                                         45.000000
+ MD| Conserved quantity [hartree]                            -0.221010845840E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.154748             0.641825
+ MD| Energy drift per atom [K]          -0.177361526607E+00  -0.324265468562E+00
+ MD| Potential energy [hartree]         -0.221064253067E+04  -0.221062271888E+04
+ MD| Kinetic energy [hartree]            0.534072274564E+00   0.514081346402E+00
+ MD| Temperature [K]                             293.553498           282.565459
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.642368786517636
+
+ MD| ***************************************************************************
+ MD| Step number                                                              46
+ MD| Time [fs]                                                         46.000000
+ MD| Conserved quantity [hartree]                            -0.221010898243E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.152881             0.631196
+ MD| Energy drift per atom [K]          -0.608291443618E+00  -0.330439946281E+00
+ MD| Potential energy [hartree]         -0.221064236879E+04  -0.221062314605E+04
+ MD| Kinetic energy [hartree]            0.533386352812E+00   0.514501020455E+00
+ MD| Temperature [K]                             293.176480           282.796133
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.635451281809765
+
+ MD| ***************************************************************************
+ MD| Step number                                                              47
+ MD| Time [fs]                                                         47.000000
+ MD| Conserved quantity [hartree]                            -0.221010858474E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.154927             0.621063
+ MD| Energy drift per atom [K]          -0.281252156478E+00  -0.329393397562E+00
+ MD| Potential energy [hartree]         -0.221063545128E+04  -0.221062340786E+04
+ MD| Kinetic energy [hartree]            0.526866546548E+00   0.514764116754E+00
+ MD| Temperature [K]                             289.592860           282.940745
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.625217081201754
+
+ MD| ***************************************************************************
+ MD| Step number                                                              48
+ MD| Time [fs]                                                         48.000000
+ MD| Conserved quantity [hartree]                            -0.221010748609E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.158822             0.611433
+ MD| Energy drift per atom [K]           0.622193589069E+00  -0.309568668673E+00
+ MD| Potential energy [hartree]         -0.221062521708E+04  -0.221062344555E+04
+ MD| Kinetic energy [hartree]            0.517730987546E+00   0.514825926563E+00
+ MD| Temperature [K]                             284.571489           282.974718
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.625022657422505
+
+ MD| ***************************************************************************
+ MD| Step number                                                              49
+ MD| Time [fs]                                                         49.000000
+ MD| Conserved quantity [hartree]                            -0.221010745518E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.154346             0.602104
+ MD| Energy drift per atom [K]           0.647615037569E+00  -0.290034307322E+00
+ MD| Potential energy [hartree]         -0.221062502266E+04  -0.221062347774E+04
+ MD| Kinetic energy [hartree]            0.517567477700E+00   0.514881876586E+00
+ MD| Temperature [K]                             284.481615           283.005471
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.635513014279695
+
+ MD| ***************************************************************************
+ MD| Step number                                                              50
+ MD| Time [fs]                                                         50.000000
+ MD| Conserved quantity [hartree]                            -0.221010839854E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.153181             0.593126
+ MD| Energy drift per atom [K]          -0.128135361535E+00  -0.286796328406E+00
+ MD| Potential energy [hartree]         -0.221063551301E+04  -0.221062371845E+04
+ MD| Kinetic energy [hartree]            0.527114477783E+00   0.515126528610E+00
+ MD| Temperature [K]                             289.729136           283.139945
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.644968690045062
+
+ MD| ***************************************************************************
+ MD| Step number                                                              51
+ MD| Time [fs]                                                         51.000000
+ MD| Conserved quantity [hartree]                            -0.221010903846E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.158883             0.584611
+ MD| Energy drift per atom [K]          -0.654364422299E+00  -0.294003545933E+00
+ MD| Potential energy [hartree]         -0.221064496869E+04  -0.221062413512E+04
+ MD| Kinetic energy [hartree]            0.535930228967E+00   0.515534444303E+00
+ MD| Temperature [K]                             294.574725           283.364156
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.644719942791653
+
+ MD| ***************************************************************************
+ MD| Step number                                                              52
+ MD| Time [fs]                                                         52.000000
+ MD| Conserved quantity [hartree]                            -0.221010969967E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.153648             0.576323
+ MD| Energy drift per atom [K]          -0.119809568978E+01  -0.311389933315E+00
+ MD| Potential energy [hartree]         -0.221064471994E+04  -0.221062453098E+04
+ MD| Kinetic energy [hartree]            0.535020273449E+00   0.515909171787E+00
+ MD| Temperature [K]                             294.074567           283.570125
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.630231549203927
+
+ MD| ***************************************************************************
+ MD| Step number                                                              53
+ MD| Time [fs]                                                         53.000000
+ MD| Conserved quantity [hartree]                            -0.221010856251E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.154354             0.568362
+ MD| Energy drift per atom [K]          -0.262978217288E+00  -0.310476504711E+00
+ MD| Potential energy [hartree]         -0.221063023155E+04  -0.221062463854E+04
+ MD| Kinetic energy [hartree]            0.521669036096E+00   0.516017848472E+00
+ MD| Temperature [K]                             286.736042           283.629860
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.618909464504668
+
+ MD| ***************************************************************************
+ MD| Step number                                                              54
+ MD| Time [fs]                                                         54.000000
+ MD| Conserved quantity [hartree]                            -0.221010757012E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.163753             0.560869
+ MD| Energy drift per atom [K]           0.553092990636E+00  -0.294484477019E+00
+ MD| Potential energy [hartree]         -0.221061890946E+04  -0.221062453244E+04
+ MD| Kinetic energy [hartree]            0.511339340576E+00   0.515931209437E+00
+ MD| Temperature [K]                             281.058312           283.582238
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.622871467791811
+
+ MD| ***************************************************************************
+ MD| Step number                                                              55
+ MD| Time [fs]                                                         55.000000
+ MD| Conserved quantity [hartree]                            -0.221010883745E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.163206             0.553639
+ MD| Energy drift per atom [K]          -0.489065696157E+00  -0.298022317367E+00
+ MD| Potential energy [hartree]         -0.221062287147E+04  -0.221062450224E+04
+ MD| Kinetic energy [hartree]            0.514034019402E+00   0.515896715072E+00
+ MD| Temperature [K]                             282.539446           283.563279
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.621991672046079
+
+ MD| ***************************************************************************
+ MD| Step number                                                              56
+ MD| Time [fs]                                                         56.000000
+ MD| Conserved quantity [hartree]                            -0.221010960122E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.154429             0.546510
+ MD| Energy drift per atom [K]          -0.111714130180E+01  -0.312649442089E+00
+ MD| Potential energy [hartree]         -0.221062199167E+04  -0.221062445741E+04
+ MD| Kinetic energy [hartree]            0.512390447861E+00   0.515834103158E+00
+ MD| Temperature [K]                             281.636054           283.528864
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.601204027459517
+
+ MD| ***************************************************************************
+ MD| Step number                                                              57
+ MD| Time [fs]                                                         57.000000
+ MD| Conserved quantity [hartree]                            -0.221010770496E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.158014             0.539694
+ MD| Energy drift per atom [K]           0.442213927774E+00  -0.299406225074E+00
+ MD| Potential energy [hartree]         -0.221060120403E+04  -0.221062404946E+04
+ MD| Kinetic energy [hartree]            0.493499068261E+00   0.515442260440E+00
+ MD| Temperature [K]                             271.252384           283.313487
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.582468382543539
+
+ MD| ***************************************************************************
+ MD| Step number                                                              58
+ MD| Time [fs]                                                         58.000000
+ MD| Conserved quantity [hartree]                            -0.221010561887E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.153943             0.533043
+ MD| Energy drift per atom [K]           0.215766404112E+01  -0.257042944622E+00
+ MD| Potential energy [hartree]         -0.221058246838E+04  -0.221062333254E+04
+ MD| Kinetic energy [hartree]            0.476849508621E+00   0.514776868168E+00
+ MD| Temperature [K]                             262.100932           282.947753
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.591162299478128
+
+ MD| ***************************************************************************
+ MD| Step number                                                              59
+ MD| Time [fs]                                                         59.000000
+ MD| Conserved quantity [hartree]                            -0.221010672243E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.152801             0.526599
+ MD| Energy drift per atom [K]           0.125017866871E+01  -0.231496815583E+00
+ MD| Potential energy [hartree]         -0.221059116230E+04  -0.221062278728E+04
+ MD| Kinetic energy [hartree]            0.484439871532E+00   0.514262681784E+00
+ MD| Temperature [K]                             266.272985           282.665130
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.612238233215521
+
+ MD| ***************************************************************************
+ MD| Step number                                                              60
+ MD| Time [fs]                                                         60.000000
+ MD| Conserved quantity [hartree]                            -0.221010866063E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.154159             0.520391
+ MD| Energy drift per atom [K]          -0.343666753228E+00  -0.233366314543E+00
+ MD| Potential energy [hartree]         -0.221061223823E+04  -0.221062261147E+04
+ MD| Kinetic energy [hartree]            0.503577598241E+00   0.514084597058E+00
+ MD| Temperature [K]                             276.792061           282.567246
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.618913892606543
+
+ MD| ***************************************************************************
+ MD| Step number                                                              61
+ MD| Time [fs]                                                         61.000000
+ MD| Conserved quantity [hartree]                            -0.221010920884E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.167222             0.514602
+ MD| Energy drift per atom [K]          -0.794474230962E+00  -0.242564804976E+00
+ MD| Potential energy [hartree]         -0.221061891389E+04  -0.221062255085E+04
+ MD| Kinetic energy [hartree]            0.509705050002E+00   0.514012801205E+00
+ MD| Temperature [K]                             280.160022           282.527783
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.607299510986195
+
+ MD| ***************************************************************************
+ MD| Step number                                                              62
+ MD| Time [fs]                                                         62.000000
+ MD| Conserved quantity [hartree]                            -0.221010797048E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.154000             0.508785
+ MD| Energy drift per atom [K]           0.223867370412E+00  -0.235041705373E+00
+ MD| Potential energy [hartree]         -0.221060729951E+04  -0.221062230486E+04
+ MD| Kinetic energy [hartree]            0.499329029908E+00   0.513775966184E+00
+ MD| Temperature [K]                             274.456830           282.397606
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.600483412503763
+
+ MD| ***************************************************************************
+ MD| Step number                                                              63
+ MD| Time [fs]                                                         63.000000
+ MD| Conserved quantity [hartree]                            -0.221010686144E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.155075             0.503171
+ MD| Energy drift per atom [K]           0.113586408135E+01  -0.213281296060E+00
+ MD| Potential energy [hartree]         -0.221060048341E+04  -0.221062195849E+04
+ MD| Kinetic energy [hartree]            0.493621971493E+00   0.513456061506E+00
+ MD| Temperature [K]                             271.319938           282.221770
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.616107153114172
+
+ MD| ***************************************************************************
+ MD| Step number                                                              64
+ MD| Time [fs]                                                         64.000000
+ MD| Conserved quantity [hartree]                            -0.221010851676E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.157960             0.497777
+ MD| Energy drift per atom [K]          -0.225351531760E+00  -0.213469893493E+00
+ MD| Potential energy [hartree]         -0.221061610715E+04  -0.221062186706E+04
+ MD| Kinetic energy [hartree]            0.507590396204E+00   0.513364410486E+00
+ MD| Temperature [K]                             278.997700           282.171394
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.630781696466784
+
+ MD| ***************************************************************************
+ MD| Step number                                                              65
+ MD| Time [fs]                                                         65.000000
+ MD| Conserved quantity [hartree]                            -0.221011040947E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.154213             0.492491
+ MD| Energy drift per atom [K]          -0.178178854488E+01  -0.237597872745E+00
+ MD| Potential energy [hartree]         -0.221063078170E+04  -0.221062200421E+04
+ MD| Kinetic energy [hartree]            0.520372223289E+00   0.513472222991E+00
+ MD| Temperature [K]                             286.023247           282.230653
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.616685395990771
+
+ MD| ***************************************************************************
+ MD| Step number                                                              66
+ MD| Time [fs]                                                         66.000000
+ MD| Conserved quantity [hartree]                            -0.221010850773E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.167686             0.487570
+ MD| Energy drift per atom [K]          -0.217927990679E+00  -0.237299844229E+00
+ MD| Potential energy [hartree]         -0.221061668540E+04  -0.221062192362E+04
+ MD| Kinetic energy [hartree]            0.508177666530E+00   0.513392002438E+00
+ MD| Temperature [K]                             279.320494           282.186560
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.595934941530231
+
+ MD| ***************************************************************************
+ MD| Step number                                                              67
+ MD| Time [fs]                                                         67.000000
+ MD| Conserved quantity [hartree]                            -0.221010583736E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.156896             0.482635
+ MD| Energy drift per atom [K]           0.197799674705E+01  -0.204235716001E+00
+ MD| Potential energy [hartree]         -0.221059593494E+04  -0.221062153573E+04
+ MD| Kinetic energy [hartree]            0.490097581920E+00   0.513044324520E+00
+ MD| Temperature [K]                             269.382753           281.995459
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.603022949969727
+
+ MD| ***************************************************************************
+ MD| Step number                                                              68
+ MD| Time [fs]                                                         68.000000
+ MD| Conserved quantity [hartree]                            -0.221010611237E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.153779             0.477799
+ MD| Energy drift per atom [K]           0.175184910449E+01  -0.175469762758E+00
+ MD| Potential energy [hartree]         -0.221060302295E+04  -0.221062126349E+04
+ MD| Kinetic energy [hartree]            0.496910581915E+00   0.512807063599E+00
+ MD| Temperature [K]                             273.127527           281.865048
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.632512174191561
+
+ MD| ***************************************************************************
+ MD| Step number                                                              69
+ MD| Time [fs]                                                         69.000000
+ MD| Conserved quantity [hartree]                            -0.221010810328E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.158438             0.473170
+ MD| Energy drift per atom [K]           0.114658829150E+00  -0.171265000557E+00
+ MD| Potential energy [hartree]         -0.221063251217E+04  -0.221062142651E+04
+ MD| Kinetic energy [hartree]            0.524408889292E+00   0.512975206001E+00
+ MD| Temperature [K]                             288.242006           281.957467
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.653734040867676
+
+ MD| ***************************************************************************
+ MD| Step number                                                              70
+ MD| Time [fs]                                                         70.000000
+ MD| Conserved quantity [hartree]                            -0.221010906468E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.154079             0.468612
+ MD| Energy drift per atom [K]          -0.675923614372E+00  -0.178474409326E+00
+ MD| Potential energy [hartree]         -0.221065373404E+04  -0.221062188805E+04
+ MD| Kinetic energy [hartree]            0.544669362581E+00   0.513427979666E+00
+ MD| Temperature [K]                             299.378201           282.206335
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.652043472441619
+
+ MD| ***************************************************************************
+ MD| Step number                                                              71
+ MD| Time [fs]                                                         71.000000
+ MD| Conserved quantity [hartree]                            -0.221010784564E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.153772             0.464177
+ MD| Energy drift per atom [K]           0.326526264966E+00  -0.171361723772E+00
+ MD| Potential energy [hartree]         -0.221065204347E+04  -0.221062231277E+04
+ MD| Kinetic energy [hartree]            0.544197830440E+00   0.513861357846E+00
+ MD| Temperature [K]                             299.119022           282.444542
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.645755900054610
+
+ MD| ***************************************************************************
+ MD| Step number                                                              72
+ MD| Time [fs]                                                         72.000000
+ MD| Conserved quantity [hartree]                            -0.221010609452E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.159390             0.459944
+ MD| Energy drift per atom [K]           0.176652591046E+01  -0.144446617741E+00
+ MD| Potential energy [hartree]         -0.221064575590E+04  -0.221062263837E+04
+ MD| Kinetic energy [hartree]            0.539661379834E+00   0.514219691485E+00
+ MD| Temperature [K]                             296.625556           282.641500
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.658286174054865
+
+ MD| ***************************************************************************
+ MD| Step number                                                              73
+ MD| Time [fs]                                                         73.000000
+ MD| Conserved quantity [hartree]                            -0.221010699465E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.156343             0.455785
+ MD| Energy drift per atom [K]           0.102632503394E+01  -0.128408649910E+00
+ MD| Potential energy [hartree]         -0.221065828617E+04  -0.221062312670E+04
+ MD| Kinetic energy [hartree]            0.551291527309E+00   0.514727524852E+00
+ MD| Temperature [K]                             303.018082           282.920632
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.674247396737883
+
+ MD| ***************************************************************************
+ MD| Step number                                                              74
+ MD| Time [fs]                                                         74.000000
+ MD| Conserved quantity [hartree]                            -0.221010909246E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.150879             0.451665
+ MD| Energy drift per atom [K]          -0.698772949372E+00  -0.136116275578E+00
+ MD| Potential energy [hartree]         -0.221067424740E+04  -0.221062381752E+04
+ MD| Kinetic energy [hartree]            0.565154932355E+00   0.515408976305E+00
+ MD| Temperature [K]                             310.638120           283.295192
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.661457592862916
+
+ MD| ***************************************************************************
+ MD| Step number                                                              75
+ MD| Time [fs]                                                         75.000000
+ MD| Conserved quantity [hartree]                            -0.221010796397E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.152387             0.447675
+ MD| Energy drift per atom [K]           0.229225615550E+00  -0.131245050363E+00
+ MD| Potential energy [hartree]         -0.221066145759E+04  -0.221062431938E+04
+ MD| Kinetic energy [hartree]            0.553493627717E+00   0.515916771657E+00
+ MD| Temperature [K]                             304.228469           283.574303
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.630362681163660
+
+ MD| ***************************************************************************
+ MD| Step number                                                              76
+ MD| Time [fs]                                                         76.000000
+ MD| Conserved quantity [hartree]                            -0.221010520546E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.152633             0.443792
+ MD| Energy drift per atom [K]           0.249762552497E+01  -0.966546480563E-01
+ MD| Potential energy [hartree]         -0.221063036268E+04  -0.221062439890E+04
+ MD| Kinetic energy [hartree]            0.525157219814E+00   0.516038356501E+00
+ MD| Temperature [K]                             288.653327           283.641132
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.616361782832882
+
+ MD| ***************************************************************************
+ MD| Step number                                                              77
+ MD| Time [fs]                                                         77.000000
+ MD| Conserved quantity [hartree]                            -0.221010428816E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.152889             0.440015
+ MD| Energy drift per atom [K]           0.325195204739E+01  -0.531662494141E-01
+ MD| Potential energy [hartree]         -0.221061636178E+04  -0.221062429452E+04
+ MD| Kinetic energy [hartree]            0.512073625600E+00   0.515986866490E+00
+ MD| Temperature [K]                             281.461913           283.612830
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.630200609387884
+
+ MD| ***************************************************************************
+ MD| Step number                                                              78
+ MD| Time [fs]                                                         78.000000
+ MD| Conserved quantity [hartree]                            -0.221010578326E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.152938             0.436334
+ MD| Energy drift per atom [K]           0.202248217293E+01  -0.265553722046E-01
+ MD| Potential energy [hartree]         -0.221063020061E+04  -0.221062437024E+04
+ MD| Kinetic energy [hartree]            0.524417346595E+00   0.516094949568E+00
+ MD| Temperature [K]                             288.246654           283.672238
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.647315818046081
+
+ MD| ***************************************************************************
+ MD| Step number                                                              79
+ MD| Time [fs]                                                         79.000000
+ MD| Conserved quantity [hartree]                            -0.221010786036E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.154212             0.432763
+ MD| Energy drift per atom [K]           0.314420192984E+00  -0.222392258098E-01
+ MD| Potential energy [hartree]         -0.221064731582E+04  -0.221062466069E+04
+ MD| Kinetic energy [hartree]            0.539455454370E+00   0.516390652160E+00
+ MD| Temperature [K]                             296.512369           283.834772
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.638998422090026
+
+ MD| ***************************************************************************
+ MD| Step number                                                              80
+ MD| Time [fs]                                                         80.000000
+ MD| Conserved quantity [hartree]                            -0.221010704853E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.159267             0.429344
+ MD| Energy drift per atom [K]           0.982012922241E+00  -0.968607395920E-02
+ MD| Potential energy [hartree]         -0.221063899842E+04  -0.221062483991E+04
+ MD| Kinetic energy [hartree]            0.531949889286E+00   0.516585142624E+00
+ MD| Temperature [K]                             292.386926           283.941674
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.617808508276084
+
+ MD| ***************************************************************************
+ MD| Step number                                                              81
+ MD| Time [fs]                                                         81.000000
+ MD| Conserved quantity [hartree]                            -0.221010499747E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.167892             0.426116
+ MD| Energy drift per atom [K]           0.266866203129E+01   0.233799520315E-01
+ MD| Potential energy [hartree]         -0.221061780851E+04  -0.221062475311E+04
+ MD| Kinetic energy [hartree]            0.512811037083E+00   0.516538548729E+00
+ MD| Temperature [K]                             281.867232           283.916063
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.615627208438582
+
+ MD| ***************************************************************************
+ MD| Step number                                                              82
+ MD| Time [fs]                                                         82.000000
+ MD| Conserved quantity [hartree]                            -0.221010490847E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.155193             0.422812
+ MD| Energy drift per atom [K]           0.274185381227E+01   0.565320722783E-01
+ MD| Potential energy [hartree]         -0.221061562721E+04  -0.221062464181E+04
+ MD| Kinetic energy [hartree]            0.510718742630E+00   0.516467575484E+00
+ MD| Temperature [K]                             280.717200           283.877053
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.634234160741016
+
+ MD| ***************************************************************************
+ MD| Step number                                                              83
+ MD| Time [fs]                                                         83.000000
+ MD| Conserved quantity [hartree]                            -0.221010729465E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.154963             0.419585
+ MD| Energy drift per atom [K]           0.779621264661E+00   0.652439902588E-01
+ MD| Potential energy [hartree]         -0.221063423416E+04  -0.221062475738E+04
+ MD| Kinetic energy [hartree]            0.526939508127E+00   0.516593743347E+00
+ MD| Temperature [K]                             289.632964           283.946401
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.639257849649312
+
+ MD| ***************************************************************************
+ MD| Step number                                                              84
+ MD| Time [fs]                                                         84.000000
+ MD| Conserved quantity [hartree]                            -0.221010842910E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.267695             0.417777
+ MD| Energy drift per atom [K]          -0.153269184247E+00   0.626426429433E-01
+ MD| Potential energy [hartree]         -0.221063925785E+04  -0.221062493001E+04
+ MD| Kinetic energy [hartree]            0.530828748989E+00   0.516763207700E+00
+ MD| Temperature [K]                             291.770690           284.039547
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.613143823983592
+
+ MD| ***************************************************************************
+ MD| Step number                                                              85
+ MD| Time [fs]                                                         85.000000
+ MD| Conserved quantity [hartree]                            -0.221010618941E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.160258             0.414747
+ MD| Energy drift per atom [K]           0.168849491817E+01   0.817703167695E-01
+ MD| Potential energy [hartree]         -0.221061314382E+04  -0.221062479135E+04
+ MD| Kinetic energy [hartree]            0.506954413621E+00   0.516647810122E+00
+ MD| Temperature [K]                             278.648131           283.976119
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.586190109341260
+
+ MD| ***************************************************************************
+ MD| Step number                                                              86
+ MD| Time [fs]                                                         86.000000
+ MD| Conserved quantity [hartree]                            -0.221010366600E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.163717             0.411829
+ MD| Energy drift per atom [K]           0.376357434457E+01   0.124581991511E+00
+ MD| Potential energy [hartree]         -0.221058619011E+04  -0.221062434250E+04
+ MD| Kinetic energy [hartree]            0.482524114032E+00   0.516251022958E+00
+ MD| Temperature [K]                             265.219986           283.758024
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.592144445499798
+
+ MD| ***************************************************************************
+ MD| Step number                                                              87
+ MD| Time [fs]                                                         87.000000
+ MD| Conserved quantity [hartree]                            -0.221010455816E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.159672             0.408930
+ MD| Energy drift per atom [K]           0.302992077008E+01   0.157976690116E+00
+ MD| Potential energy [hartree]         -0.221059214445E+04  -0.221062397240E+04
+ MD| Kinetic energy [hartree]            0.487586285558E+00   0.515921543218E+00
+ MD| Temperature [K]                             268.002415           283.576925
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.617867405816014
+
+ MD| ***************************************************************************
+ MD| Step number                                                              88
+ MD| Time [fs]                                                         88.000000
+ MD| Conserved quantity [hartree]                            -0.221010690961E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.153398             0.406026
+ MD| Energy drift per atom [K]           0.109625202172E+01   0.168638909793E+00
+ MD| Potential energy [hartree]         -0.221061786741E+04  -0.221062390303E+04
+ MD| Kinetic energy [hartree]            0.510957794280E+00   0.515865136980E+00
+ MD| Temperature [K]                             280.848595           283.545922
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.628356940842423
+
+ MD| ***************************************************************************
+ MD| Step number                                                              89
+ MD| Time [fs]                                                         89.000000
+ MD| Conserved quantity [hartree]                            -0.221010750851E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.154009             0.403195
+ MD| Energy drift per atom [K]           0.603759169744E+00   0.173527901478E+00
+ MD| Potential energy [hartree]         -0.221062835694E+04  -0.221062395307E+04
+ MD| Kinetic energy [hartree]            0.520848429881E+00   0.515921129035E+00
+ MD| Temperature [K]                             286.284995           283.576698
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.616324945756332
+
+ MD| ***************************************************************************
+ MD| Step number                                                              90
+ MD| Time [fs]                                                         90.000000
+ MD| Conserved quantity [hartree]                            -0.221010554276E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.152989             0.400415
+ MD| Energy drift per atom [K]           0.222025669414E+01   0.196269332507E+00
+ MD| Potential energy [hartree]         -0.221061632495E+04  -0.221062386832E+04
+ MD| Kinetic energy [hartree]            0.510782188073E+00   0.515864029691E+00
+ MD| Temperature [K]                             280.752072           283.545313
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.611197721561439
+
+ MD| ***************************************************************************
+ MD| Step number                                                              91
+ MD| Time [fs]                                                         91.000000
+ MD| Conserved quantity [hartree]                            -0.221010455252E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.151839             0.397683
+ MD| Energy drift per atom [K]           0.303455862452E+01   0.227459324727E+00
+ MD| Potential energy [hartree]         -0.221061119772E+04  -0.221062372908E+04
+ MD| Kinetic energy [hartree]            0.506645201515E+00   0.515762723887E+00
+ MD| Temperature [K]                             278.478173           283.489630
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.628389948205950
+
+ MD| ***************************************************************************
+ MD| Step number                                                              92
+ MD| Time [fs]                                                         92.000000
+ MD| Conserved quantity [hartree]                            -0.221010618550E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.153442             0.395028
+ MD| Energy drift per atom [K]           0.169170919790E+01   0.243375084218E+00
+ MD| Potential energy [hartree]         -0.221062838995E+04  -0.221062377974E+04
+ MD| Kinetic energy [hartree]            0.522204446591E+00   0.515832742612E+00
+ MD| Temperature [K]                             287.030331           283.528116
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.644965210734426
+
+ MD| ***************************************************************************
+ MD| Step number                                                              93
+ MD| Time [fs]                                                         93.000000
+ MD| Conserved quantity [hartree]                            -0.221010763324E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.153826             0.392435
+ MD| Energy drift per atom [K]           0.501192094316E+00   0.246147310133E+00
+ MD| Potential energy [hartree]         -0.221064496521E+04  -0.221062400754E+04
+ MD| Kinetic energy [hartree]            0.537331972353E+00   0.516063917126E+00
+ MD| Temperature [K]                             295.345195           283.655181
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.637035403933169
+
+ MD| ***************************************************************************
+ MD| Step number                                                              94
+ MD| Time [fs]                                                         94.000000
+ MD| Conserved quantity [hartree]                            -0.221010714827E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.152976             0.389887
+ MD| Energy drift per atom [K]           0.899996335830E+00   0.253103150832E+00
+ MD| Potential energy [hartree]         -0.221063703540E+04  -0.221062414614E+04
+ MD| Kinetic energy [hartree]            0.529887134278E+00   0.516210972627E+00
+ MD| Temperature [K]                             291.253130           283.736011
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.610277845114069
+
+ MD| ***************************************************************************
+ MD| Step number                                                              95
+ MD| Time [fs]                                                         95.000000
+ MD| Conserved quantity [hartree]                            -0.221010464999E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.152175             0.387385
+ MD| Energy drift per atom [K]           0.295440881025E+01   0.281537947247E+00
+ MD| Potential energy [hartree]         -0.221061027785E+04  -0.221062400015E+04
+ MD| Kinetic energy [hartree]            0.505627858318E+00   0.516099571424E+00
+ MD| Temperature [K]                             277.918989           283.674779
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.597578186875126
+
+ MD| ***************************************************************************
+ MD| Step number                                                              96
+ MD| Time [fs]                                                         96.000000
+ MD| Conserved quantity [hartree]                            -0.221010351922E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.154071             0.384955
+ MD| Energy drift per atom [K]           0.388427563378E+01   0.319066464815E+00
+ MD| Potential energy [hartree]         -0.221059757819E+04  -0.221062372492E+04
+ MD| Kinetic energy [hartree]            0.494058971224E+00   0.515869981839E+00
+ MD| Temperature [K]                             271.560135           283.548585
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.612949082159957
+
+ MD| ***************************************************************************
+ MD| Step number                                                              97
+ MD| Time [fs]                                                         97.000000
+ MD| Conserved quantity [hartree]                            -0.221010477239E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.153847             0.382572
+ MD| Energy drift per atom [K]           0.285374954150E+01   0.345197218183E+00
+ MD| Potential energy [hartree]         -0.221061294908E+04  -0.221062361383E+04
+ MD| Kinetic energy [hartree]            0.508176687946E+00   0.515790669530E+00
+ MD| Temperature [K]                             279.319956           283.504991
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.636246669229877
+
+ MD| ***************************************************************************
+ MD| Step number                                                              98
+ MD| Time [fs]                                                         98.000000
+ MD| Conserved quantity [hartree]                            -0.221010624017E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.154341             0.380243
+ MD| Energy drift per atom [K]           0.164675058923E+01   0.358478375031E+00
+ MD| Potential energy [hartree]         -0.221063624667E+04  -0.221062374274E+04
+ MD| Kinetic energy [hartree]            0.530006495380E+00   0.515935728978E+00
+ MD| Temperature [K]                             291.318737           283.584723
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.644390848952753
+
+ MD| ***************************************************************************
+ MD| Step number                                                              99
+ MD| Time [fs]                                                         99.000000
+ MD| Conserved quantity [hartree]                            -0.221010614611E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.217366             0.378598
+ MD| Energy drift per atom [K]           0.172409971465E+01   0.372272529976E+00
+ MD| Potential energy [hartree]         -0.221064439085E+04  -0.221062395131E+04
+ MD| Kinetic energy [hartree]            0.538244736056E+00   0.516161072484E+00
+ MD| Temperature [K]                             295.846896           283.708583
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ *** WARNING in force_env_methods.F:1151 :: ASSERTION (cond) failed at ***
+ *** line   1152                    Error (0.185707E-11) in computing  ***
+ *** numerical derivatives larger then(0.100000E-11) .                 ***
+
+
+ ENERGY| Total FORCE_EVAL ( MIXED ) energy [a.u.]:         -2210.639133526498426
+
+ MD| ***************************************************************************
+ MD| Step number                                                             100
+ MD| Time [fs]                                                        100.000000
+ MD| Conserved quantity [hartree]                            -0.221010488437E+04
+ MD| ---------------------------------------------------------------------------
+ MD|                                          Instantaneous             Averages
+ MD| CPU time per MD step [s]                      0.155417             0.376366
+ MD| Energy drift per atom [K]           0.276166616917E+01   0.396166466368E+00
+ MD| Potential energy [hartree]         -0.221063913353E+04  -0.221062410313E+04
+ MD| Kinetic energy [hartree]            0.534249153647E+00   0.516341953295E+00
+ MD| Temperature [K]                             293.650720           283.808004
+ MD| ***************************************************************************
+ MD| Estimated peak process memory after this step [MiB]                      59
+
+ -------------------------------------------------------------------------------
+ -                                                                             -
+ -                                DBCSR STATISTICS                             -
+ -                                                                             -
+ -------------------------------------------------------------------------------
+ COUNTER                                    TOTAL       BLAS       SMM       ACC
+ flops inhomo. stacks                           0       0.0%      0.0%      0.0%
+ flops total                         0.000000E+00       0.0%      0.0%      0.0%
+ flops max/rank                      0.000000E+00       0.0%      0.0%      0.0%
+ matmuls inhomo. stacks                         0       0.0%      0.0%      0.0%
+ matmuls total                                  0       0.0%      0.0%      0.0%
+ number of processed stacks                     0       0.0%      0.0%      0.0%
+ average stack size                                     0.0       0.0       0.0
+ marketing flops                     0.000000E+00
+ -------------------------------------------------------------------------------
+ -                                                                             -
+ -                      DBCSR MESSAGE PASSING PERFORMANCE                      -
+ -                                                                             -
+ -------------------------------------------------------------------------------
+ ROUTINE             CALLS      AVE VOLUME [Bytes]
+ MP_Bcast                1                     12.
+ MP_Allreduce           19                     21.
+ -------------------------------------------------------------------------------
+
+ -------------------------------------------------------------------------------
+ -                                                                             -
+ -                                DBM STATISTICS                               -
+ -                                                                             -
+ -------------------------------------------------------------------------------
+    M  x    N  x    K                                          COUNT     PERCENT
+ -------------------------------------------------------------------------------
+
+ -------------------------------------------------------------------------------
+ -                                                                             -
+ -                                GRID STATISTICS                              -
+ -                                                                             -
+ -------------------------------------------------------------------------------
+ LP    KERNEL             BACKEND                              COUNT     PERCENT
+ -------------------------------------------------------------------------------
+
+ MEMORY| Estimated peak process memory [MiB]                                  59
+
+ -------------------------------------------------------------------------------
+ -                                                                             -
+ -                         MESSAGE PASSING PERFORMANCE                         -
+ -                                                                             -
+ -------------------------------------------------------------------------------
+
+ ROUTINE             CALLS      AVE VOLUME [Bytes]
+ MP_Bcast             1294                2361690.
+ MP_Allreduce         3148                   4362.
+ MP_Sync               101
+ MP_comm_split           1
+ -------------------------------------------------------------------------------
+
+
+ -------------------------------------------------------------------------------
+ -                                                                             -
+ -                           R E F E R E N C E S                               -
+ -                                                                             -
+ -------------------------------------------------------------------------------
+ 
+ CP2K version 2024.3 (Development Version), the CP2K developers group (2024).
+ CP2K is freely available from https://www.cp2k.org/ .
+ 
+ C. Schran, J. Behler, D. Marx.
+ J. Chem. Theory Comput. 16, 88-99 (2020).
+ Automated Fitting of Neural Network Potentials at Coupled Cluster Accuracy: 
+ Protonated Water Clusters as Testing Ground.
+ https://doi.org/10.1021/acs.jctc.9b00805
+
+ C. Schran, K. Brezina, O. Marsalek.
+ J. Chem. Phys. 153, 104105 (2020).
+ Committee neural network potentials control generalization errors and enable 
+ active learning.
+ https://doi.org/10.1063/5.0016004
+
+ O. Schuett, P. Messmer, J. Hutter, J. VandeVondele.
+ Electronic Structure Calculations on Graphics Processing Units, 173-190 (2016).
+ GPU-Accelerated Sparse Matrix-Matrix Multiplication for Linear Scaling Density 
+ Functional Theory.
+ https://doi.org/10.1002/9781118670712.ch8
+
+ J. Hutter, M. Iannuzzi, F. Schiffmann, J. VandeVondele.
+ WIREs Comput Mol Sci. 4, 15-25 (2014).
+ CP2K: atomistic simulations of condensed matter systems.
+ https://doi.org/10.1002/wcms.1159
+
+ U. Borstnik, J. VandeVondele, V. Weber, J. Hutter.
+ Parallel Comput. 40, 47-58 (2014).
+ Sparse matrix multiplication: The distributed block-compressed sparse row 
+ library.
+ https://doi.org/10.1016/j.parco.2014.03.012
+
+ J. Behler.
+ J. Chem. Phys. 134, 074106 (2011).
+ Atom-centered symmetry functions for constructing high-dimensional neural 
+ network potentials.
+ https://doi.org/10.1063/1.3553717
+
+ J. Behler, M. Parrinello.
+ Phys. Rev. Lett. 98, 146401 (2007).
+ Generalized neural-network representation of high-dimensional potential-energy 
+ surfaces.
+ https://doi.org/10.1103/PhysRevLett.98.146401
+
+ M. Frigo, S. G. Johnson.
+ Proc. IEEE 93, 216-231 (2005).
+ The design and implementation of FFTW3.
+ https://doi.org/10.1109/JPROC.2004.840301
+
+
+ -------------------------------------------------------------------------------
+ -                                                                             -
+ -                                T I M I N G                                  -
+ -                                                                             -
+ -------------------------------------------------------------------------------
+ SUBROUTINE                       CALLS  ASD         SELF TIME        TOTAL TIME
+                                MAXIMUM       AVERAGE  MAXIMUM  AVERAGE  MAXIMUM
+ CP2K                                 1  1.0    0.009    0.011   59.610   59.610
+ qs_mol_dyn_low                       1  2.0    0.005    0.012   37.644   37.658
+ readbuffer_s                       304  4.0    2.150   36.550    2.150   36.550
+ mp_sync                            101  4.0   28.599   30.387   28.599   30.387
+ ipi_init                             1  2.0    0.000    0.000    1.290   21.924
+ start_server                         1  3.0    1.288   21.903    1.288   21.903
+ mp_max_i                           378  1.7   20.366   21.639   20.366   21.639
+ velocity_verlet                    100  3.0    0.023    0.043   18.518   18.575
+ nnp_calc_energy_force              101  4.0    0.650    0.849    5.830    6.195
+ nnp_calc_acsf                     2424  5.0    0.195    0.256    3.060    3.888
+ nnp_acsf_angular                  2424  6.0    2.774    3.529    2.774    3.529
+ mp_sum_dm                         1715  4.2    2.754    3.509    2.754    3.509
+ -------------------------------------------------------------------------------
+
+ The number of warnings for this run is : 202
+ 
+ -------------------------------------------------------------------------------
+  **** **** ******  **  PROGRAM ENDED AT                 2024-11-05 14:00:44.189
+ ***** ** ***  *** **   PROGRAM RAN ON                     compute-gpu-0-4.local
+ **    ****   ******    PROGRAM RAN BY                                     kjoll
+ ***** **    ** ** **   PROGRAM PROCESS ID                                 47961
+  **** **  *******  **  PROGRAM STOPPED IN /share/gpu1/kjoll/testing_cp2k_2024.3
+                                           _apt_i-pi_interface

@@ -1,0 +1,311 @@
+
+ GENERATE|  Preliminary Number of Bonds generated:                             0
+ GENERATE|  Achieved consistency in connectivity generation.
+ 
+ NNP| Neural Network Potential Force Environment
+ NNP| Reading NNP input from file: ./nnp/nnp0/input.nn
+ NNP| Activation functions:  1  1  3
+ NNP| short range atomic symmetry functions element H :
+ NNP|   1 H   2 H             0.308  0.265 12.000
+ NNP|   2 H   2 O             0.308  0.265 12.000
+ NNP|   3 H   2 H             0.308  1.539 12.000
+ NNP|   4 H   2 O             0.308  1.539 12.000
+ NNP|   5 H   2 H             0.308  2.814 12.000
+ NNP|   6 H   2 O             0.308  2.814 12.000
+ NNP|   7 H   2 H             0.308  4.088 12.000
+ NNP|   8 H   2 O             0.308  4.088 12.000
+ NNP|   9 H   2 H             0.308  5.363 12.000
+ NNP|  10 H   2 O             0.308  5.363 12.000
+ NNP|  11 H   2 H             0.308  6.637 12.000
+ NNP|  12 H   2 O             0.308  6.637 12.000
+ NNP|  13 H   2 H             0.308  7.912 12.000
+ NNP|  14 H   2 O             0.308  7.912 12.000
+ NNP|  15 H   2 H             0.308  9.186 12.000
+ NNP|  16 H   2 O             0.308  9.186 12.000
+ NNP|  17 H   2 H             0.308 10.461 12.000
+ NNP|  18 H   2 O             0.308 10.461 12.000
+ NNP|  19 H   2 H             0.308 11.735 12.000
+ NNP|  20 H   2 O             0.308 11.735 12.000
+ NNP|   1 H   3 H  H   0.012 -1.000  1.000 12.000
+ NNP|   2 H   3 H  O   0.012 -1.000  1.000 12.000
+ NNP|   3 H   3 O  O   0.012 -1.000  1.000 12.000
+ NNP|   4 H   3 H  H   0.012  1.000  1.000 12.000
+ NNP|   5 H   3 H  O   0.012  1.000  1.000 12.000
+ NNP|   6 H   3 O  O   0.012  1.000  1.000 12.000
+ NNP|   7 H   3 H  H   0.012 -1.000  4.000 12.000
+ NNP|   8 H   3 H  O   0.012 -1.000  4.000 12.000
+ NNP|   9 H   3 O  O   0.012 -1.000  4.000 12.000
+ NNP|  10 H   3 H  H   0.012  1.000  4.000 12.000
+ NNP|  11 H   3 H  O   0.012  1.000  4.000 12.000
+ NNP|  12 H   3 O  O   0.012  1.000  4.000 12.000
+ NNP| short range atomic symmetry functions element O :
+ NNP|   1 O   2 H             0.308  0.265 12.000
+ NNP|   2 O   2 O             0.308  0.265 12.000
+ NNP|   3 O   2 H             0.308  1.539 12.000
+ NNP|   4 O   2 O             0.308  1.539 12.000
+ NNP|   5 O   2 H             0.308  2.814 12.000
+ NNP|   6 O   2 O             0.308  2.814 12.000
+ NNP|   7 O   2 H             0.308  4.088 12.000
+ NNP|   8 O   2 O             0.308  4.088 12.000
+ NNP|   9 O   2 H             0.308  5.363 12.000
+ NNP|  10 O   2 O             0.308  5.363 12.000
+ NNP|  11 O   2 H             0.308  6.637 12.000
+ NNP|  12 O   2 O             0.308  6.637 12.000
+ NNP|  13 O   2 H             0.308  7.912 12.000
+ NNP|  14 O   2 O             0.308  7.912 12.000
+ NNP|  15 O   2 H             0.308  9.186 12.000
+ NNP|  16 O   2 O             0.308  9.186 12.000
+ NNP|  17 O   2 H             0.308 10.461 12.000
+ NNP|  18 O   2 O             0.308 10.461 12.000
+ NNP|  19 O   2 H             0.308 11.735 12.000
+ NNP|  20 O   2 O             0.308 11.735 12.000
+ NNP|   1 O   3 H  H   0.012 -1.000  1.000 12.000
+ NNP|   2 O   3 H  O   0.012 -1.000  1.000 12.000
+ NNP|   3 O   3 O  O   0.012 -1.000  1.000 12.000
+ NNP|   4 O   3 H  H   0.012  1.000  1.000 12.000
+ NNP|   5 O   3 H  O   0.012  1.000  1.000 12.000
+ NNP|   6 O   3 O  O   0.012  1.000  1.000 12.000
+ NNP|   7 O   3 H  H   0.012 -1.000  4.000 12.000
+ NNP|   8 O   3 H  O   0.012 -1.000  4.000 12.000
+ NNP|   9 O   3 O  O   0.012 -1.000  4.000 12.000
+ NNP|  10 O   3 H  H   0.012  1.000  4.000 12.000
+ NNP|  11 O   3 H  O   0.012  1.000  4.000 12.000
+ NNP|  12 O   3 O  O   0.012  1.000  4.000 12.000
+ NNP| Neural network specification for element H :
+ NNP|  32 nodes in layer  1
+ NNP|  25 nodes in layer  2
+ NNP|  25 nodes in layer  3
+ NNP|   1 nodes in layer  4
+ NNP| Neural network specification for element O :
+ NNP|  32 nodes in layer  1
+ NNP|  25 nodes in layer  2
+ NNP|  25 nodes in layer  3
+ NNP|   1 nodes in layer  4
+ NNP| Reading scaling information from file: ./nnp/nnp0/input.nn
+ NNP| Initializing weights for model:            1
+ NNP| Reading weights from file: ./nnp/nnp0/weights.001.data
+ NNP| Reading weights from file: ./nnp/nnp0/weights.008.data
+ NNP| Initializing weights for model:            2
+ NNP| Reading weights from file: ./nnp/nnp1/weights.001.data
+ NNP| Reading weights from file: ./nnp/nnp1/weights.008.data
+ NNP| Initializing weights for model:            3
+ NNP| Reading weights from file: ./nnp/nnp2/weights.001.data
+ NNP| Reading weights from file: ./nnp/nnp2/weights.008.data
+ NNP| Initializing weights for model:            4
+ NNP| Reading weights from file: ./nnp/nnp3/weights.001.data
+ NNP| Reading weights from file: ./nnp/nnp3/weights.008.data
+ NNP| Initializing weights for model:            5
+ NNP| Reading weights from file: ./nnp/nnp4/weights.001.data
+ NNP| Reading weights from file: ./nnp/nnp4/weights.008.data
+ NNP| Initializing weights for model:            6
+ NNP| Reading weights from file: ./nnp/nnp5/weights.001.data
+ NNP| Reading weights from file: ./nnp/nnp5/weights.008.data
+ NNP| Initializing weights for model:            7
+ NNP| Reading weights from file: ./nnp/nnp6/weights.001.data
+ NNP| Reading weights from file: ./nnp/nnp6/weights.008.data
+ NNP| Initializing weights for model:            8
+ NNP| Reading weights from file: ./nnp/nnp7/weights.001.data
+ NNP| Reading weights from file: ./nnp/nnp7/weights.008.data
+ NNP| NNP force environment initialized
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.627708006430112
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.616348122839554
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.603570366538861
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.616696287021114
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.634859894257715
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.629350975878879
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.618279779330805
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.619066940471384
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.625424934142757
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.626411332830230
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.620488492696495
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.616061022036320
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.621932993401970
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.629988705093638
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.634357624373024
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.634704788863928
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.631778382490666
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.629386889456782
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.623662718336163
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.613869743312534
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.612883653648169
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.620985770998232
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.613021563548045
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.600343969086225
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.603954234758930
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.612419915761620
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.615645763149587
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.609325824767893
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.595573632073410
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.597889874212342
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.616599854246942
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.620583447739591
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.610814455656055
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.608840791186140
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.616935401492810
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.628508373584737
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.636946276411436
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.631313109728126
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.625039671193463
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.631882634089379
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.639838468771813
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.643612610098444
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.647244666608913
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.648790725334948
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.644584124659104
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.642530672888824
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.642368786517636
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.635451281809765
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.625217081201754
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.625022657422505
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.635513014279695
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.644968690045062
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.644719942791653
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.630231549203927
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.618909464504668
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.622871467791811
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.621991672046079
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.601204027459517
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.582468382543539
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.591162299478128
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.612238233215521
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.618913892606543
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.607299510986195
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.600483412503763
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.616107153114172
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.630781696466784
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.616685395990771
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.595934941530231
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.603022949969727
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.632512174191561
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.653734040867676
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.652043472441619
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.645755900054610
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.658286174054865
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.674247396737883
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.661457592862916
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.630362681163660
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.616361782832882
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.630200609387884
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.647315818046081
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.638998422090026
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.617808508276084
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.615627208438582
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.634234160741016
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.639257849649312
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.613143823983592
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.586190109341260
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.592144445499798
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.617867405816014
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.628356940842423
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.616324945756332
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.611197721561439
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.628389948205950
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.644965210734426
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.637035403933169
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.610277845114069
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.597578186875126
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.612949082159957
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.636246669229877
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.644390848952753
+
+ ENERGY| Total FORCE_EVAL ( NNP ) energy [a.u.]:           -2210.639133526498426
