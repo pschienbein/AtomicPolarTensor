@@ -17,4 +17,5 @@ These 17 cores are split by cp2k into 2 groups - one for the i-pi force evaluati
 We assign 16 (square power of 2) to NNP and 1 core to i-pi then the server communication.
 
 Please see the run_files dir for the input files and the run.sh file for the submission script.
-Please see the test_res dir for the expected output files.§
+Please see the test_res dir for the expected output files.
+
