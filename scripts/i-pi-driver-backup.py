@@ -85,7 +85,7 @@ def parse_input_file(input_file):
     config = configparser.ConfigParser()
     config.read(input_file)
     aptnn_config = config['aptnn']  # Separate variable to avoid reassigning config
-    atoms = read(aptnn_config['template'],parallel=False)  # Reading template file with ASE
+    atoms = read(aptnn_config['template'])  # Reading template file with ASE
     atomic_string=[atom.symbol for atom in atoms]
     electric_field_vector = [float(i) for i in aptnn_config['electric_field_vector'].split()]  # Convert to list of floats
     model_path = aptnn_config['model_path']
@@ -111,9 +111,9 @@ def initialize_model(model_file):
         net = CommitteeAPTNN(committee_size=None, model_parameters=None)
         net.load(model_file)
     except Exception as e:
-        print(f"Error loading model from {model_file}: {e}",  flush=True)
+        print(f"Error loading model from {model_file}: {e}")
         exit(1)
-    print(f"Rank {rank} finished loading model",flush=True)
+    print(f"Rank {rank} finished loading model",file=sys.stderr,flush=True)
 
 def run_driver(
     unix=False,
@@ -121,11 +121,7 @@ def run_driver(
     port=12345,
     f_verbose=False,
     sockets_prefix="/tmp/ipi_",
-    input_file="",
-    n_proc=0,
-    asr_diag="0,0,0",
-    restart=False,
-    itcount_start=0
+    input_file=""
 ):
     """Minimal socket client for i-PI."""
 
@@ -167,22 +163,13 @@ def run_driver(
     model_path = None
     atom_string = None
     electric_field_vec = None
-
-    try:
-        target_diag = [float(x) for x in asr_diag.split(',')]
-        if len(target_diag) != 3:
-            raise ValueError
-    except ValueError:
-        print("Error: --asr_diag must be three comma-separated numbers (e.g., '1,1,1').", file=sys.stderr)
-        sys.exit(1)
-    target_matrix = np.diag(target_diag)
     
     while True:  # ah the infinite loop!
 
         if rank ==0:
             header = sock.recv(HDRLEN)
             if f_verbose:
-                print("Received ", header,flush=True)
+                print("Received ", header)
         else:
             header=None
         
@@ -202,40 +189,28 @@ def run_driver(
             #try to load the model here
             #read the parameters to run the driver here
             if rank==0:
-                itcount=itcount_start
+                itcount=0
                 #get driver parameters
                 model_path, atom_string, electric_field_vec, apt_output, efield_force_output = parse_input_file(input_file)
-                apt_file = open(apt_output, 'a') if apt_output else None
-                force_file = open(efield_force_output, 'a') if efield_force_output else None
+                apt_file = open(apt_output, 'w') if apt_output else None
+                force_file = open(efield_force_output, 'w') if efield_force_output else None
                 print(f'Rank {rank} received model_file: {model_path}', flush=True)
                 print(f'Rank {rank} received atom_string: {atom_string}', flush=True)
                 print(f'Rank {rank} received electric_field: {electric_field_vec}', flush=True)
 
-            if rank == 0:
-                print(f"Broadcasting model_path: {model_path}")
             model_path = comm.bcast(model_path, root=0)
-
-            if rank == 0:
-                print(f"Broadcasting electric_field_vec: {electric_field_vec}")
-            electric_field_vec = comm.bcast(electric_field_vec, root=0)
-
-            if rank == 0:
-                print(f"Broadcasting atom_string of length {len(atom_string)}")
             atom_string = comm.bcast(atom_string, root=0)
-            comm.Barrier()
-
-            print(f'This is rank {rank} and I am loading the model from {model_path}',flush=True)
+            electric_field_vec= comm.bcast(electric_field_vec, root=0)
+            
+ 
             initialize_model(model_path)
-            if f_verbose:
-                print(f'This is rank {rank} and I have loaded the model',flush=True)
-
             if rank==0:
                 # initialization
                 rid = recv_data(sock, np.int32())
                 initlen = recv_data(sock, np.int32())
                 initstr = recv_data(sock, np.chararray(initlen))
                 if f_verbose:
-                    print(rid, initstr, flush=True)
+                    print(rid, initstr)
                 f_init = True  # we are initialized now
             f_init = comm.bcast(f_init, root=0)
 
@@ -275,37 +250,28 @@ def run_driver(
             box.loadFromVectors(cell)
             config = Frame(atoms=atoms, box=box)
 
-            prediction = net.predict([config],num_active_processes=n_proc)
+            prediction = net.predict([config])
             
             #apply acoustic sum rule correction
             if rank==0:
+
                 pred_apt = prediction['apt']
                 pred_var = prediction['std']
                 summedtensors = np.sum(pred_apt[0], axis=0)
-                error = summedtensors - target_matrix
-                print(f'This is the error before the ASR {error}')
-                correction = error / nat
+
                 for i in range(nat):
-                    pred_apt[0][i] -= correction
+                    pred_apt[0][i] -= summedtensors / nat
                     config.atoms[i].apt = pred_apt[0][i]
                     config.atoms[i].apt_std = pred_var[0][i]
 
-                # Only write output if it's not a restart or if itcount exceeds the last completed iteration.
-                if (not restart) or (itcount > itcount_start):
-                    if apt_file:
-                        write_conf(apt_file, config.atoms, meta={'i': f'{itcount}'}, fmt='pa')
-                else:
-                    print(f"Skipping duplicate apt output for iteration {itcount} (restart data).", flush=True)
-
+                if apt_file:
+                    write_conf(apt_file, config.atoms,meta={'i':f'{itcount}'},fmt='pa')
 
                 for i in range(nat):
                     config.atoms[i].frc = np.matmul(np.transpose(pred_apt[0][i]), electric_field_vec)
 
-                if (not restart) or (itcount > itcount_start):
-                    if force_file:
-                        write_conf(force_file, config.atoms, meta={'i': f'{itcount}'}, fmt='pf')
-                else:
-                    print(f"Skipping duplicate force output for iteration {itcount} (restart data).", flush=True)
+                if force_file:
+                    write_conf(force_file, config.atoms,meta={'i': f'{itcount}'},fmt='pf')
 
                 for i in range(nat):
                     force[i] = config.atoms[i].frc
@@ -351,12 +317,12 @@ def run_driver(
 
             if rank==0:
                 end_frc_send_time = time()
-                print(f"Driver Iteration {itcount} took: {end_frc_send_time-start_pos_recv_time}", flush=True )
+                print(f"Driver Iteration {itcount} took: {end_frc_send_time-start_pos_recv_time}", flush=True, file=sys.stderr)
                 itcount+=1
 
         elif header == Message("EXIT"):
             if rank==0:
-                print("Received exit message from i-PI. Bye bye!",flush=True )
+                print("Received exit message from i-PI. Bye bye!",flush=True, file=sys.stderr)
 
                 if apt_file:
                     apt_file.close()
@@ -417,48 +383,7 @@ if __name__ == "__main__":
         required=True
     )
 
-    parser.add_argument(
-        "-np",
-        "--n_proc",
-        type=int,
-        default=0,
-        help="Number of committee members to evaluate prediction for at once.",
-        required=True
-    )
-
-    parser.add_argument(
-        "--asr_diag",
-        type=str,
-        default="0,0,0",
-        help="Comma-separated target diagonal values for the summed APT tensor (e.g., '1,1,1' for net +1 charge)",
-        required=True
-    )
-
-    parser.add_argument(
-    "--restart",
-    action="store_true",
-    default=False,
-    help="Set this flag if restarting a simulation to skip duplicate output for the restart iteration."
-    )
-
-    parser.add_argument(
-    "--itcount_start",
-    type=int,
-    default=0,
-    help="Iteration number of the last completed run. For a restart, the plugin will skip output for this iteration."
-    )
-
-
     args = parser.parse_args()
-    # NEW: Initialize iteration counter based on restart flag.
-    if args.restart:
-        itcount = args.itcount_start
-        print(f"Restart mode enabled. Starting iteration count from {itcount}.", flush=True)
-    else:
-        itcount = 0
-        print("Fresh run mode. Starting iteration count from 0.", flush=True)
-        
-
 
     run_driver(
         unix=args.unix,
@@ -466,10 +391,6 @@ if __name__ == "__main__":
         port=args.port,
         f_verbose=args.verbose,
         sockets_prefix=args.sockets_prefix,
-        input_file=args.input,
-        n_proc=args.n_proc,
-        asr_diag=args.asr_diag,
-        restart=args.restart,
-        itcount_start=args.itcount_start
+        input_file=args.input
     )
 

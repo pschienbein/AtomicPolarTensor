@@ -71,6 +71,7 @@ class CommitteeAPTNN:
         #torch.cuda.device(self.device)
 
         # construct the APTNN
+        print("about to init the APTNN object", flush=True)
         self.rank_member = APTNN(device=self.device, model_parameters=self.model_parameters, postfix="_"+str(self.rank))
 
         # override the callback function
@@ -183,7 +184,6 @@ class CommitteeAPTNN:
         comm = MPI.COMM_WORLD
         rank = comm.Get_rank()
 
-        start = datetime.now()
 
         # Broadcast number of active processes from rank 0
         num_active_processes = comm.bcast(num_active_processes, root=0)
